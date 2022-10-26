@@ -1,29 +1,29 @@
 import {useEffect, useState } from 'react';
-import AddProjectMap from './AddProjectMap'
-import AddProjectForm from './AddProjectForm';
+import AddPlaceMap from './AddPlaceMap'
+import AddPlaceForm from './AddPlaceForm';
 import FileForm from './FileForm';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import VewMyProjectImageCard from './VewMyProjectImageCard';
+import VewMyPlaceImageCard from './VewMyPlaceImageCard';
   
 
-export default function AddProjectContainer() {
+export default function AddPlaceContainer() {
   const user = useSelector(state=>state)
   const history = useNavigate();
 
   const [imageData, setImageData] = useState([])
   const [coords, setCoords] = useState({lat: null, lng: null})
-  const [projectData, setProjectData] = useState({title:null, description:null})
+  const [placeData, setPlaceData] = useState({title:null, description:null})
   const [submission, setSubmission] = useState({title: null, description: null, client_id: user.id, lat: null, lng: null})
-  //anytime coords or projectData is updated, update the submission hash
+  //anytime coords or placeData is updated, update the submission hash
   useEffect(()=>{
   const newSubmission = {...submission}
-  newSubmission.title = projectData.title
-  newSubmission.description = projectData.description
+  newSubmission.title = placeData.title
+  newSubmission.description = placeData.description
   newSubmission.lat = coords.lat
   newSubmission.lng = coords.lng
   setSubmission(newSubmission)
-  },[coords, projectData]
+  },[coords, placeData]
   )
   function handleAddImageToImageData(newImage){
     const newImageData = [...imageData]
@@ -33,7 +33,7 @@ export default function AddProjectContainer() {
     
   }
 
-  function handleSubmitProjectToAPI(){
+  function handleSubmitPlaceToAPI(){
     //first submit the Place form
     fetch("/places", {method: "POST", headers:{'Content-Type':'application/json'}, body: JSON.stringify(submission)})
       .then(response=>response.json())
@@ -62,7 +62,7 @@ export default function AddProjectContainer() {
                   <div className="col-sm-6">
                     <div className="card border-0 text-truncate mb-3 bg-gray-800 text-white">
                       <div className="card-body" >
-                      <AddProjectMap setCoords={setCoords} />
+                      <AddPlaceMap setCoords={setCoords} />
                       </div> 
                     </div>
                   </div>
@@ -71,7 +71,7 @@ export default function AddProjectContainer() {
                   <div className="col-md-6 col-sm-6 col-sm-pull-6">
                     <div className="card border-0 mb-3 bg-gray-800 text-white">
                       <div className="card-body">
-                        <AddProjectForm handleSubmitProjectToAPI={handleSubmitProjectToAPI} projectData={projectData} setProjectData={setProjectData} />
+                        <AddPlaceForm handleSubmitPlaceToAPI={handleSubmitPlaceToAPI} placeData={placeData} setPlaceData={setPlaceData} />
                       </div>
                     </div>
                   </div>

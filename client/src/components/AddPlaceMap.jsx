@@ -3,7 +3,7 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import Button from 'react-bootstrap/esm/Button';
 
 const API_KEY = process.env.REACT_APP_API_KEY_GOOGLE_EARTH_JS;
-const AddProjectMap = ({setCoords}) => {
+const AddPlaceMap = ({setCoords}) => {
   const [address, setAddress] = useState('')
   const [coordAddress, setCoordAddress] = useState({
       lat: 41.40,
@@ -52,5 +52,5 @@ const AddProjectMap = ({setCoords}) => {
       </LoadScript>
   )
 }
-export default AddProjectMap;
+export default AddPlaceMap;
 

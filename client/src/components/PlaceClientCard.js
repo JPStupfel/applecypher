@@ -1,9 +1,9 @@
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 
-function ProjectClientCard({project}) {
+function PlaceClientCard({place}) {
   const history = useNavigate();
-  const image = project.posts.length ? project.posts[0].image_url : 'loading'
+  const image = place.posts.length ? place.posts[0].image_url : 'loading'
 
   return (
         <li className='grid-cell' datatype='region'>
@@ -14,18 +14,18 @@ function ProjectClientCard({project}) {
                 <img src={image} alt="" />
 							</div>
 							  <div className="image-info">
-								  <h5 className="title" >{project.title}
+								  <h5 className="title" >{place.title}
                   </h5>
 								  <div className="d-flex align-items-center mb-2">
 									  <div className="ms-auto">
 									  </div>
 								  </div>
 								  <div className="desc">
-                    {project.description}								
+                    {place.description}								
                   </div>
                   <br/>
-                  <Button className="btn-gray" variant="primary" onClick={()=>history(`/places/${project.id}`)}>
-                    View Project
+                  <Button className="btn-gray" variant="primary" onClick={()=>history(`/places/${place.id}`)}>
+                    View Place
                   </Button>
 							  </div>
 						  </div>
@@ -35,4 +35,4 @@ function ProjectClientCard({project}) {
   );
 }
 
-export default ProjectClientCard;
+export default PlaceClientCard;

@@ -29,7 +29,7 @@ function FileForm({handleAddImageToImageData}) {
         <form onSubmit={handleSubmit}>
           <input type='file' name="Image" id="image"/>
           <br/>
-          <Button className="btn-gray" variant="primary" type="submit"> Attach Photo to Project! </Button>
+          <Button className="btn-gray" variant="primary" type="submit"> Attach Photo to Place! </Button>
         </form>
         <div className='gallery-v2' id="gallery">
         {images}

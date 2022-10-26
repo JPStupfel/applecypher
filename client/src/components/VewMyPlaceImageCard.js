@@ -2,9 +2,9 @@ import Card from 'react-bootstrap/Card';
 
 
 
-function VewMyProjectImageCard({image}) {
+function VewMyPlaceImageCard({image}) {
 
-  // const image = project.posts.length ? project.posts[0].image_url : ''
+  // const image = place.posts.length ? place.posts[0].image_url : ''
 
   return (
           <div className="gallery">
@@ -16,4 +16,4 @@ function VewMyProjectImageCard({image}) {
   );
 }
 
-export default VewMyProjectImageCard;
+export default VewMyPlaceImageCard;

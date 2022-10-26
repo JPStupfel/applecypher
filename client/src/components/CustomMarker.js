@@ -2,13 +2,13 @@ import React, {useState} from 'react'
 import { InfoBox, Marker } from '@react-google-maps/api';
 
 
-export default function CustomMarker({project}) {
+export default function CustomMarker({place}) {
 
         const [showInfo, setShowInfo] = useState(false)
 
-        const location = {lat:project.lat, lng: project.lng}
+        const location = {lat:place.lat, lng: place.lng}
 
-        const image = project.posts.length ? project.posts[0].image_url : ''
+        const image = place.posts.length ? place.posts[0].image_url : ''
 
 
         const info =    
@@ -19,14 +19,14 @@ export default function CustomMarker({project}) {
         >
             <div style={{ backgroundColor: `white`,' maxWidth':'100px' }}>
               <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
-                {project.title}
+                {place.title}
               </div>
               <img src={image} alt='' className='map-image' />
               
             </div>
         </InfoBox>
   return (
-    <Marker un onClick={()=>setShowInfo(p=>!p)} optimized={false} key={project.title} position={location}>
+    <Marker un onClick={()=>setShowInfo(p=>!p)} optimized={false} key={place.title} position={location}>
   
    {showInfo ? info : null}
 

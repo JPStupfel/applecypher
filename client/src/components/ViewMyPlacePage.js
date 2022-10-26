@@ -1,22 +1,22 @@
 import React, { useEffect, useState} from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import MapContainer from './MapContainer'
-import VewMyProjectImageCard from './VewMyProjectImageCard';
+import VewMyPlaceImageCard from './VewMyPlaceImageCard';
 
-export default function ViewMyProjectPage() {
+export default function ViewMyPlacePage() {
      let  {id} = useParams();
      const id_num = parseInt(id,10)
      
      const [isEditDesc, setIsEditDesc] = useState(false)
-     const [currentProject, setCurrentProject] = useState(null)
+     const [currentPlace, setCurrentPlace] = useState(null)
      const history = useNavigate();
      const [description, setDescription] = useState('')
 
      useEffect(()=>{
-        fetch(`/places/${id_num}`).then(r=>r.json()).then(d=>setCurrentProject(d))
+        fetch(`/places/${id_num}`).then(r=>r.json()).then(d=>setCurrentPlace(d))
      },[])
      
-     function deleteProject(event){
+     function deletePlace(event){
         fetch(`/places/${id_num}`, {method: "DELETE"}).catch(e=>console.log(e))
         history('/places')
      }
@@ -31,15 +31,15 @@ export default function ViewMyProjectPage() {
       setIsEditDesc(prev=>!prev)
 
       // handle the patch
-      fetch(`/places/${id_num}`, {method: "PATCH", headers:{'Content-Type':'application/json'}, body: JSON.stringify({'description': description })}).then(r=>r.json()).then(d=>{const newCurrentProject = {...currentProject}; newCurrentProject.description = d.description; setCurrentProject(newCurrentProject)})
+      fetch(`/places/${id_num}`, {method: "PATCH", headers:{'Content-Type':'application/json'}, body: JSON.stringify({'description': description })}).then(r=>r.json()).then(d=>{const newCurrentPlace = {...currentPlace}; newCurrentPlace.description = d.description; setCurrentPlace(newCurrentPlace)})
 
       // reset state
     }
       
      // catch ref error while fetching.
-     while (!currentProject){return(<>Loading!</>)}
+     while (!currentPlace){return(<>Loading!</>)}
 
-     const projectImages =  currentProject.posts.map(e=><VewMyProjectImageCard key={e.id} image={e.image_url} />) 
+     const placeImages =  currentPlace.posts.map(e=><VewMyPlaceImageCard key={e.id} image={e.image_url} />) 
 
      
 
@@ -61,7 +61,7 @@ export default function ViewMyProjectPage() {
 							<div className="col-sm-6">
 								<div className="card border-0 text-truncate mb-3 bg-gray-800 text-white">
 									<div className="card-body" >
-										<MapContainer projectList={[currentProject]}/>
+										<MapContainer placeList={[currentPlace]}/>
 									</div> 
 								</div>
 							</div>
@@ -84,19 +84,19 @@ export default function ViewMyProjectPage() {
 						<div className="card border-0 mb-3 bg-gray-900 text-white">
 							<div className="card-body" style={{ background: 'no-repeat bottom right', backgroundImage: 'url(/assets/img/svg/img-4.svg)', backgroundSize: 'auto 60%'}}>
 								<div className="mb-3 text-gray-500 ">
-									<b>Project Images</b>
+									<b>Place Images</b>
 								</div>
 							</div>
 							<div className="widget-list rounded-bottom dark-mode">
 							<div className='gallery-v2' id="gallery">
-								{projectImages}
+								{placeImages}
 							</div>																									
 							</div>
 						</div>
 					</div>					
 				</div>
 			</div>
-      <button className="ms-auto btn btn-gray btn-primary btn-sm" onClick={deleteProject}>Delete This Project
+      <button className="ms-auto btn btn-gray btn-primary btn-sm" onClick={deletePlace}>Delete This Place
                 </button>
    </div>
   )
