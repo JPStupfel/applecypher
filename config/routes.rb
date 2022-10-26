@@ -8,7 +8,7 @@ Rails.application.routes.draw do
  #test
 
 #  routes to return coordincates from address
-  get "/address/:loc", to: 'proposals#getAddress'
+  get "/address/:loc", to: 'places#getAddress'
 
 # routes for client authentication
   post '/session', to: "sessions#create"

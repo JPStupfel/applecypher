@@ -3,9 +3,14 @@ class PlacesController < ApplicationController
     before_action :require_login
 
     def index
-
-        places = Place.limit(params[:limit]).offset(params[:offset]).where("title ILIKE ?","%"+params[:search]+"%")
+        if params[:limit] || params[:offset] || params[:search] 
+            places = Place.limit(params[:limit]).offset(params[:offset]).where("title ILIKE ?","%"+params[:search]+"%")
+        
+    else 
+        places = Place.all
+    end
         render json: places, status: 200
+
     end
  
     def getAddress

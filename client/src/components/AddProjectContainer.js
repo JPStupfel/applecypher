@@ -35,21 +35,19 @@ export default function AddProjectContainer() {
 
   function handleSubmitProjectToAPI(){
     //first submit the Place form
-    fetch("/Places", {method: "POST", headers:{'Content-Type':'application/json'}, body: JSON.stringify(submission)})
+    fetch("/places", {method: "POST", headers:{'Content-Type':'application/json'}, body: JSON.stringify(submission)})
       .then(response=>response.json())
       .then(d=>{
-       
-
         //then submit the image post
             imageData.forEach(
               data=>{
                 fetch("/posts", {method: "POST", body: data}).then(response=>response.json()).then(i=>{                  
                 }).catch(e=>console.log(e))
                     })    
+            console.log(d)
           });
     history(`/myprojects`)
   }
-
 
   return (
         <div>
