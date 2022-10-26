@@ -15,8 +15,8 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    # attach post to last Proposal because is called when proposal is created
-    @post = Proposal.last.posts.new(post_params)
+    # attach post to last Place because is called when place is created
+    @post = Place.last.posts.new(post_params)
       if @post.save
         render json: @post, status: :created, location: @post
       else
@@ -37,8 +37,6 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
   end
-
- 
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -19,12 +19,12 @@ image = [{path: 'db/Pictures/wooden_pier_two.jpeg', filename:'wooden_pier_two.jp
 
 20.times do 
 
-proposal = Proposal.create title: Faker::Games::Minecraft.achievement, description: Faker::Quotes::Shakespeare.hamlet_quote + Faker::Quotes::Shakespeare.romeo_and_juliet_quote, client_id: Client.first.id, lat: Faker::Number.within(range: 41.3917..41.4000), lng: Faker::Number.within(range: 2.1649..2.2000) 
+place = Place.create title: Faker::Games::Minecraft.achievement, description: Faker::Quotes::Shakespeare.hamlet_quote + Faker::Quotes::Shakespeare.romeo_and_juliet_quote, client_id: Client.first.id, lat: Faker::Number.within(range: 41.3917..41.4000), lng: Faker::Number.within(range: 2.1649..2.2000) 
 
 
 image.each do |i|
     
-    post = proposal.posts.create title: "Doc"
+    post = place.posts.create title: "Doc"
     # attach a local image as a placeholder
     post.image.attach(io: File.open(Rails.root.join(i[:path])),
                       filename: i[:filename])

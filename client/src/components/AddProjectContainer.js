@@ -34,8 +34,8 @@ export default function AddProjectContainer() {
   }
 
   function handleSubmitProjectToAPI(){
-    //first submit the proposal form
-    fetch("/proposals", {method: "POST", headers:{'Content-Type':'application/json'}, body: JSON.stringify(submission)})
+    //first submit the Place form
+    fetch("/Places", {method: "POST", headers:{'Content-Type':'application/json'}, body: JSON.stringify(submission)})
       .then(response=>response.json())
       .then(d=>{
        

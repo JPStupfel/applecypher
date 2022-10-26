@@ -13,11 +13,11 @@ export default function ViewMyProjectPage() {
      const [description, setDescription] = useState('')
 
      useEffect(()=>{
-        fetch(`/proposals/${id_num}`).then(r=>r.json()).then(d=>setCurrentProject(d))
+        fetch(`/places/${id_num}`).then(r=>r.json()).then(d=>setCurrentProject(d))
      },[])
      
      function deleteProject(event){
-        fetch(`/proposals/${id_num}`, {method: "DELETE"}).catch(e=>console.log(e))
+        fetch(`/places/${id_num}`, {method: "DELETE"}).catch(e=>console.log(e))
         history('/myprojects')
      }
 
@@ -31,7 +31,7 @@ export default function ViewMyProjectPage() {
       setIsEditDesc(prev=>!prev)
 
       // handle the patch
-      fetch(`/proposals/${id_num}`, {method: "PATCH", headers:{'Content-Type':'application/json'}, body: JSON.stringify({'description': description })}).then(r=>r.json()).then(d=>{const newCurrentProject = {...currentProject}; newCurrentProject.description = d.description; setCurrentProject(newCurrentProject)})
+      fetch(`/places/${id_num}`, {method: "PATCH", headers:{'Content-Type':'application/json'}, body: JSON.stringify({'description': description })}).then(r=>r.json()).then(d=>{const newCurrentProject = {...currentProject}; newCurrentProject.description = d.description; setCurrentProject(newCurrentProject)})
 
       // reset state
     }

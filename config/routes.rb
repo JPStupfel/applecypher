@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
   
+  resources :places
   resources :posts
   resources :proposals, only: [:index, :create, :show, :destroy, :update]
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
  #test
-
-  get "/api/proposals", to: 'proposals#index'
-
 
 #  routes to return coordincates from address
   get "/address/:loc", to: 'proposals#getAddress'
