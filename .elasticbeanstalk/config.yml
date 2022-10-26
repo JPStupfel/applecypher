@@ -1,9 +1,9 @@
 branch-defaults:
   main:
     environment: staging1
-    group_suffix: null
+    group_suffix: applecypher
 global:
-  application_name: ready-set-bid
+  application_name: applecypher
   branch: null
   default_ec2_keyname: aws-eb
   default_platform: Ruby 2.7 running on 64bit Amazon Linux 2

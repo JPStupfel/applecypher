@@ -22,10 +22,6 @@ require 'faker'
 
 Client.create username: 'liv', password: 'fish', password_confirmation: 'fish', email: 'liv@gmail.com', image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBTWFnjwIJFXgDdyzgSRjit2_9zlWrMVqgVg&usqp=CAU'
 
-Professional.create username: 'arnold', password: 'fish',  password_confirmation: 'fish', image_url: 'https://manofmany.com/wp-content/uploads/2019/03/Arnold-Schwarzeneggers-Diet-and-Workout-Plan.jpg'
-Professional.create username: 'maria', password: 'fish', password_confirmation: 'fish', image_url: 'https://www.tennisworldusa.org/imgb/98650/maria-sharapova-when-i-won-wimbledon-my-mother-was-.webp'
-
-
 
 # images = [{path: 'db/Pictures/wooden_pier_two.jpeg', filename:'wooden_pier_two.jpeg'}, {path:'db/Pictures/Wooden_Pier.jpeg',filename:'Wooden_Pier.jpeg'}]
 
@@ -45,7 +41,6 @@ image.each do |i|
                       filename: i[:filename])
     end
 
-proposal.bids.create professional_id: Professional.first.id, amount: 400
 
 
 end

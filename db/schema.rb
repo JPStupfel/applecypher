@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_09_150736) do
+ActiveRecord::Schema.define(version: 2022_10_26_181323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,14 +43,6 @@ ActiveRecord::Schema.define(version: 2022_09_09_150736) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "bids", force: :cascade do |t|
-    t.integer "proposal_id"
-    t.integer "professional_id"
-    t.string "amount"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "clients", force: :cascade do |t|
     t.string "username"
     t.text "password_digest"
@@ -65,14 +57,6 @@ ActiveRecord::Schema.define(version: 2022_09_09_150736) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "proposal_id"
-  end
-
-  create_table "professionals", force: :cascade do |t|
-    t.string "username"
-    t.text "password_digest"
-    t.string "image_url"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "proposals", force: :cascade do |t|
