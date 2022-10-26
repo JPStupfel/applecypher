@@ -48,8 +48,9 @@ function App() {
           null
           }
         <Routes>
-
-              <Route path="/places" exact element={<MyPlacesPage/>} >
+            <Route path="/" exact element={<MyPlacesPage/>} >
+            </Route>
+            <Route path="/places" exact element={<MyPlacesPage/>} >
             </Route>
             <Route path="/places/:id" exact element={user.user_type === 'Client' ? <ViewMyPlacePage /> : <LoginContainer setUser={setUser} />}>
             </Route>
