@@ -7,15 +7,8 @@ import LoginProForm from './LoginProForm';
 
 
 export default function LoginContainer({setUser}) {
-    const [radioValue, setRadioValue] = useState('1');
-
-    const radios = [
-        { name: 'I am a Client', value: '1' },
-        { name: 'I am a Professional', value: '2' }      ];
-    
-
+ 
   return (
-  
       <div className="login login-v1">
 				<div className="login-container">
 					<div className="login-header">
@@ -30,24 +23,7 @@ export default function LoginContainer({setUser}) {
 						</div>
 					</div>
 					<div className='signupContainer'>
-          {radioValue === '1' ?   <LoginClientForm setUser={setUser} /> : <LoginProForm setUser={setUser}/>}
-          <ButtonGroup className="mb-2">
-        {radios.map((radio, idx) => (
-          <ToggleButton
-            key={idx}
-            id={`radio-${idx}`}
-            type="radio"
-            variant="secondary"
-            name="radio"
-            value={radio.value}
-            checked={radioValue === radio.value}
-            style={radioValue === radio.value ? {'backgroundColor':'beige', 'color':'black'} : null}
-            onChange={(e) => setRadioValue(e.currentTarget.value)}
-          >
-            {radio.name}
-          </ToggleButton>
-        ))}
-      </ButtonGroup>
+           <LoginClientForm setUser={setUser} /> 
           </div> 
 				</div>
 			</div>

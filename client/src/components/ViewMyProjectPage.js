@@ -1,7 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import MapContainer from './MapContainer'
-import MyProjectBidList from './MyProjectBidList';
 import VewMyProjectImageCard from './VewMyProjectImageCard';
 
 export default function ViewMyProjectPage() {
@@ -22,9 +21,6 @@ export default function ViewMyProjectPage() {
         history('/myprojects')
      }
 
-     function handleAcceptBid(bid){
-       fetch(`/proposals/${id_num}`, {method: "PATCH", headers:{'Content-Type':'application/json'}, body: JSON.stringify({victor_id: bid.professional_id })}).then(r=>r.json()).then(d=>{const newCurrentProject = {...currentProject}; newCurrentProject.victor_id = d.victor_id; setCurrentProject(newCurrentProject); console.log(d)})
-  }
     function handleChange(event){
       setDescription(event.target.value)
     }
@@ -74,7 +70,6 @@ export default function ViewMyProjectPage() {
 							<div className="col-md-6 col-sm-6 col-sm-pull-6">
 								<div className="card border-0 mb-3 bg-gray-800 text-white">
 									<div className="card-body">
-										<MyProjectBidList handleAcceptBid={handleAcceptBid} currentProject={currentProject}/>
 									</div>
 								</div>
 							</div>
