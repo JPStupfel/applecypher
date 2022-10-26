@@ -1,9 +1,5 @@
 import React, {useState} from 'react'
 import SignupClientForm from './SignupClientForm'
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import ToggleButton from 'react-bootstrap/ToggleButton';
-import SignupProForm from './SignupProForm';
-
 
 export default function SignupContainer({setUser}) {
    
