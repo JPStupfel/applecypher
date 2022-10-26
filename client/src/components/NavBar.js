@@ -15,9 +15,9 @@ function NavBar({handleLogout}) {
           <Nav className="me-auto">
 
           
-          {user.user_type === 'Client' ? <Nav.Link href="/#/places">My Projects</Nav.Link> : <> <Nav.Link href="/#/projects">Projects</Nav.Link> <Nav.Link href="/#/my_projects_won">Won Projects</Nav.Link> </>}
+          <Nav.Link href="/#/places">Browse Places</Nav.Link> 
          
-          {user.user_type === 'Client' ? <Nav.Link href="/#/new-place">New Project</Nav.Link> : null}
+          {user.user_type === 'Client' ? <Nav.Link href="/#/new-place">Create Place</Nav.Link> : null}
           
 
           </Nav>

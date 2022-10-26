@@ -18,7 +18,7 @@ export default function ViewMyProjectPage() {
      
      function deleteProject(event){
         fetch(`/places/${id_num}`, {method: "DELETE"}).catch(e=>console.log(e))
-        history('/myprojects')
+        history('/places')
      }
 
     function handleChange(event){

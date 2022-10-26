@@ -19,7 +19,7 @@ function handleSubmit(event){
       .then(d=>{
         if (d.errors){setError(d.errors)}
 	      else {setUser(d); 
-        history('/myprojects')}
+        history('/places')}
       }
         ).catch(e=>console.log(e))
 }

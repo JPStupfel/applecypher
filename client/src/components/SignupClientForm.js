@@ -14,7 +14,7 @@ function handleSubmit(event){
         },
         body: JSON.stringify(formData),
       }).then(r=>r.json()).then(d=>{
-        setUser(d); history('/myprojects')}).catch(e=>console.log(e))
+        setUser(d); history('/places')}).catch(e=>console.log(e))
 }
 
 function handleChange(event){

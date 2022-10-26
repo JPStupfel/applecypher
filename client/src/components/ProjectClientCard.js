@@ -24,7 +24,7 @@ function ProjectClientCard({project}) {
                     {project.description}								
                   </div>
                   <br/>
-                  <Button className="btn-gray" variant="primary" onClick={()=>history(`/myprojects/${project.id}`)}>
+                  <Button className="btn-gray" variant="primary" onClick={()=>history(`/places/${project.id}`)}>
                     View Project
                   </Button>
 							  </div>

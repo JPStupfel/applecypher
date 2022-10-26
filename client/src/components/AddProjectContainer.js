@@ -46,7 +46,7 @@ export default function AddProjectContainer() {
                     })    
             console.log(d)
           });
-    history(`/myprojects`)
+    history(`/places`)
   }
 
   return (
