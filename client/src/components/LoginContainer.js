@@ -20,7 +20,7 @@ export default function LoginContainer({setUser}) {
 						<div className="icon">
 							<i className="fa fa-lock"></i>
 						</div>
-					</div>
+				</div>
 					<div className='signupContainer'>
            <LoginClientForm setUser={setUser} /> 
           </div> 
