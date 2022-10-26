@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import LoginClientForm from './LoginClientForm'
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
-import LoginProForm from './LoginProForm';
 // import '/Users/jpstupfel/Development/code/phase-5/ready-set-bid/client/src/components/scss/react.scss'
 
 
