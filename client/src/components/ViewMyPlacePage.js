@@ -39,7 +39,7 @@ export default function ViewMyPlacePage() {
      // catch ref error while fetching.
      while (!currentPlace){return(<>Loading!</>)}
 
-     const placeImages =  currentPlace.posts.map(e=><VewMyPlaceImageCard key={e.id} image={e.image_url} />) 
+     const placeImages =  currentPlace.pictures.map(e=><VewMyPlaceImageCard key={e.id} image={e.url} />) 
 
      
 
@@ -49,7 +49,6 @@ export default function ViewMyPlacePage() {
 
   return (
     <div>
-    
       <div>
 				<div className="d-sm-flex align-items-center mb-3">
 				</div>
@@ -96,7 +95,7 @@ export default function ViewMyPlacePage() {
 					</div>					
 				</div>
 			</div>
-      <button className="ms-auto btn btn-gray btn-primary btn-sm" onClick={deletePlace}>Delete This Place
+      			<button className="ms-auto btn btn-gray btn-primary btn-sm" onClick={deletePlace}>Delete This Place
                 </button>
    </div>
   )

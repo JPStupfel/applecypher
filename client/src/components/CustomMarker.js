@@ -8,7 +8,7 @@ export default function CustomMarker({place}) {
 
         const location = {lat:place.lat, lng: place.lng}
 
-        const image = place.posts.length ? place.posts[0].image_url : ''
+      const image = place.pictures.length ? place.pictures[0].url : ''
 
 
         const info =    
