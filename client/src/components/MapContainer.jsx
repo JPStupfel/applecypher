@@ -30,7 +30,7 @@ const API_KEY = process.env.REACT_APP_API_KEY_GOOGLE_EARTH_JS;
       <div className='map-box'>
         <GoogleMap
           mapContainerStyle={mapStyles}
-          zoom={13}
+          zoom={9}
           center={defaultCenter}
         >
           {markers}
