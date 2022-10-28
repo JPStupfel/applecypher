@@ -26,9 +26,9 @@ export default function ViewMyPlacePage() {
      const placeImages =  currentPlace.pictures.map(e=><VewMyPlaceImageCard key={e.id} image={e.url} />) 
   return (
     <div>
-      <div>
-				<div className="d-sm-flex align-items-center mb-3">
-				</div>
+      	<div>
+			<div className="d-sm-flex align-items-center mb-3">
+			</div>
 {/* FIRST ROW */}
 				<div className="row">
 					<div className="col-12">
@@ -43,39 +43,39 @@ export default function ViewMyPlacePage() {
 							</div>
 {/* FIRST COMPONENT FIRST ROW */}
 {/* SECOND COMPONENT FIRST ROW */}
-<div className="col-md-6 col-sm-6 col-sm-pull-6">
-							<div className="card border-0 mb-3 bg-gray-800 text-white">
+							<div className="col-sm-6">
+								<div className="card border-0 mb-3 bg-gray-800 text-white">
 									<div className="card-body">
 										<h1>{currentPlace.title}</h1>
 										<div>{currentPlace.description}</div>
 										<br/>
 									</div>
 								</div>
+
+<div className="card border-0 mb-3 bg-gray-900 text-white">
+	<div className="card-body">
+		<div className="mb-3 text-gray-500 ">
+			<b>Place Images</b>
+		</div>
+	</div>
+	<div className="widget-list rounded-bottom dark-mode">
+		<div className='gallery-v2' id="gallery">
+			{placeImages}
+		</div>																									
+	</div>
+</div>
+
 							</div>
 						</div>
-	{/* SECOND COMPONENT FIRST ROW */}
+{/* SECOND COMPONENT FIRST ROW */}
+
 					</div>
 				</div>
 {/* END FIRST ROW */}
-				<div className="row">
-					<div className="col-12">
-						<div className="card border-0 mb-3 bg-gray-900 text-white">
-							<div className="card-body" style={{ background: 'no-repeat bottom right', backgroundImage: 'url(/assets/img/svg/img-4.svg)', backgroundSize: 'auto 60%'}}>
-								<div className="mb-3 text-gray-500 ">
-									<b>Place Images</b>
-								</div>
-							</div>
-							<div className="widget-list rounded-bottom dark-mode">
-							<div className='gallery-v2' id="gallery">
-								{placeImages}
-							</div>																									
-							</div>
-						</div>
-					</div>					
-				</div>
-			</div>
-      			<button className="ms-auto btn btn-gray btn-primary btn-sm" onClick={deletePlace}>Delete This Place
-                </button>
-   </div>
+				
+		</div>
+		<button className="ms-auto btn btn-gray btn-primary btn-sm" onClick={deletePlace}>Delete This Place
+		</button>
+	</div>
   )
 }

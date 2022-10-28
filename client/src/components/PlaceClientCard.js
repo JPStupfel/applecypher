@@ -11,7 +11,7 @@ function PlaceClientCard({place}) {
            <div className='col-12'>
 						<div className="image w-100">
 							<div className="image-inner">
-                <img src={image} alt="" />
+                <img  src={image} alt="" />
 							</div>
 							  <div className="image-info">
 								  <h5 className="title" >{place.title}

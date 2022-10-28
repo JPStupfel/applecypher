@@ -29,6 +29,7 @@
 		& .img {
 			width: 100%;
 			height: rem(200px);
+			object-fit: cover;
 			border-radius: $border-radius $border-radius 0 0;
 		}
 		& .img {

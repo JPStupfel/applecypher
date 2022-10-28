@@ -3,9 +3,13 @@ import Card from 'react-bootstrap/Card';
 function VewMyPlaceImageCard({image}) {
   return (
           <div className="gallery">
-            <a href={image} className="ratio ratio-4x3" data-pswp-src="../assets/img/gallery/gallery-1.jpg" data-pswp-width="1200" data-pswp-height="800">
-              <img src={image}/>
+            <a href={image} >
+            <img src={image} style={{"width": "20vw",
+    "height": "20vw",
+    "object-fit": "cover",
+    "padding": "10px"}}/>
             </a>
+
           </div>
   );
 }
