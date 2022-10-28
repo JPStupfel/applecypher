@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 function PlaceClientCard({place}) {
   const history = useNavigate();
-  const image = place.pictures.length ? place.pictures[0].url : 'loading'
+  const image = place.first_picture ? place.first_picture : 'loading'
 
   return (
         <li className='grid-cell' datatype='region'>

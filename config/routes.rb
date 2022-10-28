@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :posts
 #  routes to return coordincates from address
   get "/address/:loc", to: 'places#getAddress'
+
 # routes for client authentication
   post '/session', to: "sessions#create"
   patch '/session', to: "sessions#update"

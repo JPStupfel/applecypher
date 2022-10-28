@@ -31,8 +31,11 @@ class PlacesController < ApplicationController
 
     def show
         place = Place.find_by id: params['id']
+        
         if place
-            render json: place, status: 200
+            render json: place, 
+            serializer: PlacePicturesSerializer, 
+            status: 200
         else
             render json: {error: 'Place Not Found'}, status: 422
         end

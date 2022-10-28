@@ -6,5 +6,10 @@ class Place < ApplicationRecord
     validates :title, presence: true
     validates :description, presence: true
 
+    def first_picture
+        self.pictures.first.imagable.url
+    end
+
+
     
 end
