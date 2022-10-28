@@ -9,8 +9,8 @@ export default function MyPlacesPage() {
   const [search, setSearch] = useState('')
   useEffect(()=>{fetchPlaces()},[offset])
   useEffect(()=>{searchPlaces()},[search])
-  function fetchPlaces(){fetch(`places?limit=${6}&offset=${offset}&search=${search}`).then(r=>r.json()).then(d=>{console.log(d);if (d.length){setPlaceList(d)} else {handleChangeOffset(-6);console.log('You have reached the last page!')}}).catch(e=>console.log(e))}
-  function searchPlaces(){fetch(`places?limit=${6}&offset=${offset}&search=${search}`).then(r=>r.json()).then(d=>{console.log(d);setPlaceList(d)}).catch(e=>console.log(e));setOffset(0)}
+  function fetchPlaces(){fetch(`places?limit=${6}&offset=${offset}&search=${search}`).then(r=>r.json()).then(d=>{if (d.length){setPlaceList(d)} else {handleChangeOffset(-6);console.log('You have reached the last page!')}}).catch(e=>console.log(e))}
+  function searchPlaces(){fetch(`places?limit=${6}&offset=${offset}&search=${search}`).then(r=>r.json()).then(d=>{setPlaceList(d)}).catch(e=>console.log(e));setOffset(0)}
   // function to change offset +/- int
   function handleChangeOffset(int){if (offset + int >=0){setOffset(prev=>setOffset(prev+int))} else {console.log('You have reached page 1!')}}
   // for resizing map and scroll bar

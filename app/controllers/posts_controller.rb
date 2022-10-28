@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     @post = Post.create(post_params)
     @picture = Place.last.pictures.create :imagable => @post
 
-      if @picture.valid
+      if @picture.valid?
         render json: @picture, status: :created, location: @picture
       else
         render json: @picture.errors, status: :unprocessable_entity

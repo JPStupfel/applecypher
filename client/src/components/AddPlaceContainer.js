@@ -32,14 +32,21 @@ export default function AddPlaceContainer() {
     newImageData.push(newImage)
     setImageData(newImageData)
   }
-
+  function handleAddWebImageToImageData(newImage){
+    const newWebImageData = [...webImageData]
+    newWebImageData.push(newImage)
+    setWebImageData(newWebImageData)
+  }
   function handleSubmitPlaceToAPI(){
     //first submit the Place form
     fetch("/places", {method: "POST", headers:{'Content-Type':'application/json'}, body: JSON.stringify(submission)})
-      .then(response=>response.json())
-      //then submit the image post
-      .then(d=>{imageData.forEach(data=>{fetch("/posts", {method: "POST", body: data}).then(response=>response.json()).then(i=>{ history(`/places`)}).catch(e=>console.log(e))})})}
-
+    .then(response=>response.json())
+    //   // then submit the webimagesF
+      .then(d=>{webImageData.forEach(i=>{fetch("/webpics", {method: "POST", headers:{'Content-Type':'application/json'}, body: JSON.stringify(i)}).then(response=>response.json()).then(i=>console.log(i)).catch(e=>console.log(e))})})
+       //then submit the image post
+      .then(d=>{imageData.forEach(data=>{fetch("/posts", {method: "POST", body: data}).then(response=>response.json()).then(i=>{console.log(i)}).catch(e=>console.log(e))})})
+      // redirect to /placs
+      history(`/places`)}
   return (
         <div>
           <div>
@@ -77,7 +84,7 @@ export default function AddPlaceContainer() {
                 <div className="card border-0 mb-3 bg-gray-900 text-white">
                   <div className="card-body" style={{ background: 'no-repeat bottom right', backgroundImage: 'url(/assets/img/svg/img-4.svg)', backgroundSize: 'auto 60%'}}>
                     <div className="mb-3 text-gray-500 ">
-                      <FileForm handleAddImageToImageData={handleAddImageToImageData} />
+                      <FileForm handleAddWebImageToImageData={handleAddWebImageToImageData} handleAddImageToImageData={handleAddImageToImageData} />
                       <b><ul>{imageData.map(e=><li>{e.get('post[image]').name}</li>)}</ul></b>
                     </div>
                   </div>
@@ -92,4 +99,3 @@ export default function AddPlaceContainer() {
         </div>
   )
 }
-
