@@ -6,47 +6,24 @@ import VewMyPlaceImageCard from './VewMyPlaceImageCard';
 export default function ViewMyPlacePage() {
      let  {id} = useParams();
      const id_num = parseInt(id,10)
-     
      const [isEditDesc, setIsEditDesc] = useState(false)
      const [currentPlace, setCurrentPlace] = useState(null)
      const history = useNavigate();
      const [description, setDescription] = useState('')
-
      useEffect(()=>{
-        fetch(`/places/${id_num}`).then(r=>r.json()).then(d=>setCurrentPlace(d))
-     },[])
-     
+        fetch(`/places/${id_num}`).then(r=>r.json()).then(d=>setCurrentPlace(d))},[])
      function deletePlace(event){
         fetch(`/places/${id_num}`, {method: "DELETE"}).catch(e=>console.log(e))
-        history('/places')
-     }
-
-    function handleChange(event){
-      setDescription(event.target.value)
-    }
-
+        history('/places')}
+    function handleChange(event){setDescription(event.target.value)}
     function handleSubmit(event){
       event.preventDefault();
-      // console.log(description)
       setIsEditDesc(prev=>!prev)
-
       // handle the patch
-      fetch(`/places/${id_num}`, {method: "PATCH", headers:{'Content-Type':'application/json'}, body: JSON.stringify({'description': description })}).then(r=>r.json()).then(d=>{const newCurrentPlace = {...currentPlace}; newCurrentPlace.description = d.description; setCurrentPlace(newCurrentPlace)})
-
-      // reset state
-    }
-      
+      fetch(`/places/${id_num}`, {method: "PATCH", headers:{'Content-Type':'application/json'}, body: JSON.stringify({'description': description })}).then(r=>r.json()).then(d=>{const newCurrentPlace = {...currentPlace}; newCurrentPlace.description = d.description; setCurrentPlace(newCurrentPlace)})}
      // catch ref error while fetching.
      while (!currentPlace){return(<>Loading!</>)}
-
      const placeImages =  currentPlace.pictures.map(e=><VewMyPlaceImageCard key={e.id} image={e.url} />) 
-
-     
-
-     const descriptionEditor = <form onSubmit={handleSubmit}><input onChange={handleChange} value={description}></input></form>
-
-
-
   return (
     <div>
       <div>
@@ -66,13 +43,15 @@ export default function ViewMyPlacePage() {
 							</div>
 {/* FIRST COMPONENT FIRST ROW */}
 {/* SECOND COMPONENT FIRST ROW */}
-							<div className="col-md-6 col-sm-6 col-sm-pull-6">
-								<div className="card border-0 mb-3 bg-gray-800 text-white">
+<div className="col-md-6 col-sm-6 col-sm-pull-6">
+							<div className="card border-0 mb-3 bg-gray-800 text-white">
 									<div className="card-body">
+										<h1>{currentPlace.title}</h1>
+										<div>{currentPlace.description}</div>
+										<br/>
 									</div>
 								</div>
 							</div>
-							
 						</div>
 	{/* SECOND COMPONENT FIRST ROW */}
 					</div>
