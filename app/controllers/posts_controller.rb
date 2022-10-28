@@ -15,12 +15,15 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
+    
     # attach post to last Place because is called when place is created
-    @post = Place.last.posts.new(post_params)
-      if @post.save
-        render json: @post, status: :created, location: @post
+    @post = Post.create(post_params)
+    @picture = Place.last.pictures.create :imagable => @post
+
+      if @picture.valid
+        render json: @picture, status: :created, location: @picture
       else
-        render json: @post.errors, status: :unprocessable_entity
+        render json: @picture.errors, status: :unprocessable_entity
       end
   end
 

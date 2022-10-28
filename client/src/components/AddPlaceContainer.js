@@ -38,8 +38,7 @@ export default function AddPlaceContainer() {
     fetch("/places", {method: "POST", headers:{'Content-Type':'application/json'}, body: JSON.stringify(submission)})
       .then(response=>response.json())
       //then submit the image post
-      .then(d=>{imageData.forEach(data=>{fetch("/posts", {method: "POST", body: data}).then(response=>response.json()).then(i=>{console.log(i)}).catch(e=>console.log(e))})});
-            history(`/places`)}
+      .then(d=>{imageData.forEach(data=>{fetch("/posts", {method: "POST", body: data}).then(response=>response.json()).then(i=>{ history(`/places`)}).catch(e=>console.log(e))})})}
 
   return (
         <div>

@@ -8,7 +8,7 @@ function FileForm({handleAddImageToImageData}) {
    function handleSubmit(event){
     event.preventDefault();
     const data= new FormData();
-    data.append("post[title]", event.target.title.value)
+    data.append("[title]", event.target.title.value)
     data.append("post[image]", event.target.image.files[0])
     handleAddImageToImageData(data)
     let url = URL.createObjectURL(event.target.image.files[0])
@@ -26,11 +26,16 @@ function FileForm({handleAddImageToImageData}) {
   return (
       <div>
         <h1>Upload Images From Device</h1>
+
         <form onSubmit={handleSubmit}>
           <input type='file' name="Image" id="image"/>
           <br/>
-          <Button className="btn-gray" variant="primary" type="submit"> Attach Photo to Place! </Button>
+          <input type="text" className="form-control" id="title"  placeholder="Enter URL from the Web"/>
+          <Button className="btn-gray" variant="primary" type="submit"> Attach Photo to Place!</Button>
         </form>
+
+
+
         <div className='gallery-v2' id="gallery">
         {images}
         </div>
