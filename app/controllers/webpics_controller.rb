@@ -1,0 +1,2 @@
+class WebpicsController < ApplicationController
+end

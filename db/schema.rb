@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_26_195859) do
+ActiveRecord::Schema.define(version: 2022_10_27_155530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(version: 2022_10_26_195859) do
     t.text "email"
   end
 
+  create_table "pictures", force: :cascade do |t|
+    t.integer "place_id"
+    t.string "imagable_type"
+    t.bigint "imagable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["imagable_type", "imagable_id"], name: "index_pictures_on_imagable"
+  end
+
   create_table "places", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -67,6 +76,12 @@ ActiveRecord::Schema.define(version: 2022_10_26_195859) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "place_id"
+  end
+
+  create_table "webpics", force: :cascade do |t|
+    t.string "url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

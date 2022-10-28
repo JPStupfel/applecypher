@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/esm/Button';
 
 function FileForm({handleAddImageToImageData}) {
 
-    const [url, setUrl] = useState([])
+  const [url, setUrl] = useState([])
 
    function handleSubmit(event){
     event.preventDefault();
@@ -25,7 +25,7 @@ function FileForm({handleAddImageToImageData}) {
 
   return (
       <div>
-        <h1>Upload Images Here</h1>
+        <h1>Upload Images From Device</h1>
         <form onSubmit={handleSubmit}>
           <input type='file' name="Image" id="image"/>
           <br/>

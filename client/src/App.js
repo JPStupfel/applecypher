@@ -15,11 +15,9 @@ function App() {
   const user = useSelector(state=>state)
   const dispatch = useDispatch()
   function setUser(newUser){
-    const action = {
-      type: 'SET_USER'
-    }
-    Object.keys(user).forEach(key=>action[key]=newUser[key])
-    dispatch(action)
+  const action = {type: 'SET_USER'}
+  Object.keys(user).forEach(key=>action[key]=newUser[key])
+  dispatch(action)
   }
 
   useEffect(()=>{

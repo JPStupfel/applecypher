@@ -12,6 +12,8 @@ export default function AddPlaceContainer() {
   const history = useNavigate();
 
   const [imageData, setImageData] = useState([])
+  const [webImageData, setWebImageData] = useState([])
+
   const [coords, setCoords] = useState({lat: null, lng: null})
   const [placeData, setPlaceData] = useState({title:null, description:null})
   const [submission, setSubmission] = useState({title: null, description: null, client_id: user.id, lat: null, lng: null})
@@ -29,25 +31,15 @@ export default function AddPlaceContainer() {
     const newImageData = [...imageData]
     newImageData.push(newImage)
     setImageData(newImageData)
-    
-    
   }
 
   function handleSubmitPlaceToAPI(){
     //first submit the Place form
     fetch("/places", {method: "POST", headers:{'Content-Type':'application/json'}, body: JSON.stringify(submission)})
       .then(response=>response.json())
-      .then(d=>{
-        //then submit the image post
-            imageData.forEach(
-              data=>{
-                fetch("/posts", {method: "POST", body: data}).then(response=>response.json()).then(i=>{                  
-                }).catch(e=>console.log(e))
-                    })    
-            console.log(d)
-          });
-    history(`/places`)
-  }
+      //then submit the image post
+      .then(d=>{imageData.forEach(data=>{fetch("/posts", {method: "POST", body: data}).then(response=>response.json()).then(i=>{console.log(i)}).catch(e=>console.log(e))})});
+            history(`/places`)}
 
   return (
         <div>

@@ -27,7 +27,7 @@ function handleChange(event){
         <input onChange={handleChange} type="text" className="form-control" id="title"  placeholder="Enter Place Title"/>
       </div>
       <div className="form-group">
-        <label>description
+        <label>Description
         </label>
         <textarea onChange={handleChange}  type="text" className="form-control" id="description" placeholder="description"/>
       </div>
