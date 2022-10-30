@@ -196,6 +196,7 @@ td.column {
   /* Flex & inline-block implementation */
   /* [fix] IE `flex-basis` doesn't account for `box-sizing: border-box` */
   width: auto;
+  height: auto;
   /* Trigger item wrapping with flexbox & inline-block */
   /* min-width: 200px; */
   max-width: 200px;
