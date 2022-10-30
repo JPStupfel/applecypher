@@ -28,8 +28,8 @@
 		& img,
 		& .img {
 			width: 100%;
-			height: rem(200px);
-			objectFit: cover;
+			// max-height: rem(200px);
+			object-fit: cover;
 			border-radius: $border-radius $border-radius 0 0;
 		}
 		& .img {
@@ -41,6 +41,9 @@
 			position: relative;
 			background: var(--app-component-bg);
 			border-radius: $border-radius $border-radius 0 0;
+			height: 100%;
+			object-fit: cover;
+
 		}
 		& .image-caption {
 			position: absolute;
