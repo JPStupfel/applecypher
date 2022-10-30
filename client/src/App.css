@@ -36,61 +36,61 @@
     transform: rotate(360deg);
   }
 }
-.latest-image {
-  width: 300px;
+.latest-image{
+  width: 300px
 }
-.signupContainer {
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex; /* establish flex container */
-  flex-direction: column; /* stack flex items vertically */
-  justify-content: center; /* center items vertically, in this case */
-  align-items: left; /* center items horizontally, in this case */
-  height: fit-content;
-  border: 1px solid black;
+.signupContainer{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;              /* establish flex container */
+    flex-direction: column;     /* stack flex items vertically */
+    justify-content: center;    /* center items vertically, in this case */
+    align-items: left;        /* center items horizontally, in this case */
+    height:fit-content;
+    border: 1px solid black;
 }
-.signup-form {
+.signup-form{
   margin-top: 5%;
   margin-bottom: 5%s;
 }
-.profile-thumbnail {
+.profile-thumbnail{
   height: 40px;
-  border-top-left-radius: 50% 50%;
-  border-top-right-radius: 50% 50%;
-  border-bottom-right-radius: 50% 50%;
-  border-bottom-left-radius: 50% 50%;
+  border-top-left-radius: 50% 50%; border-top-right-radius: 50% 50%; border-bottom-right-radius: 50% 50%; border-bottom-left-radius: 50% 50%;
 }
 
-.navbar-image-container {
+
+.navbar-image-container{
   display: flex;
 }
-.map-image {
+.map-image{
   max-width: 100px;
   max-height: 100px;
 }
-.bid-image {
+.bid-image{
+
   height: 100px;
-  display: inline;
+    display: inline;
+
 }
-.bid-container {
+.bid-container{
   display: inline-flex;
 }
-.bid-outline {
+.bid-outline{
+  border-style: solid;
+  border-width: 2px;
+  border-color: grey  ;
+}
+.project-image-container{
   border-style: solid;
   border-width: 2px;
   border-color: grey;
 }
-.project-image-container {
-  border-style: solid;
-  border-width: 2px;
-  border-color: grey;
-}
-.project-image-container img {
+.project-image-container img{
   display: inline-table;
-  height: auto;
+  height: auto
 }
-.map-box {
+.map-box{
   border-style: solid;
   border-width: 2px;
   border-color: black;
@@ -105,9 +105,9 @@
   transition: opacity 2s ease;
 }
 
-#logged-out-home-gif {
+#logged-out-home-gif{
   position: relative;
-  background: url("./images/giphy.gif") no-repeat center center fixed;
+  background: url('./images/giphy.gif') no-repeat center center fixed;
   -webkit-background-size: contain;
   -moz-background-size: contain;
   -o-background-size: contain;
@@ -116,8 +116,8 @@
   top: 0%;
 }
 
-#logged-out-home-static {
-  background: url("./images/arcpic.jpg") no-repeat center center fixed;
+#logged-out-home-static{
+  background: url('./images/arcpic.jpg') no-repeat center center fixed;
   -webkit-background-size: contain;
   -moz-background-size: contain;
   -o-background-size: contain;
@@ -125,7 +125,7 @@
   height: 1000px;
   top: 0%;
 }
-#logged-out-content {
+#logged-out-content{
   background-color: white;
   position: relative;
   height: 80%;
@@ -144,7 +144,7 @@
 }
 td.column {
   overflow-y: visible;
-  width: 100% !important;
+  width: 100%!important;
   display: block;
 }
 #tdSide .column {
@@ -173,6 +173,7 @@ td.column {
   margin: 0;
 }
 .grid-cell {
+  max-width: 100px;
   /* Flex implementation */
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
@@ -196,11 +197,8 @@ td.column {
   /* Flex & inline-block implementation */
   /* [fix] IE `flex-basis` doesn't account for `box-sizing: border-box` */
   width: auto;
-  height: auto;
   /* Trigger item wrapping with flexbox & inline-block */
-  /* min-width: 200px; */
-  max-width: 200px;
-  
+  min-width: 200px;
 }
 .grid-cell.grid-cell--ghost {
   /* Could be use to create ghost cells
@@ -243,8 +241,7 @@ td.column {
 .listmore4 li:nth-child(n + 5) {
   display: none;
 }
-#page_map_container,
-#tdSide {
+#page_map_container, #tdSide {
   vertical-align: top;
 }
 #page_map_container .map {
@@ -252,11 +249,12 @@ td.column {
 }
 
 @media (max-width: 450px) {
-  .grid-cell {
+
+  .grid-cell{
     min-width: 175px;
   }
 
-  .map-box {
+  .map-box{
     width: 95%;
     margin-left: 2%;
   }
@@ -267,36 +265,24 @@ td.column {
   }
 
   #tdSide {
-    display: inline;
-  }
+   display: inline;
+   }
 
-  #roadtripRegionsContainer {
+   #roadtripRegionsContainer {
     margin-left: 2%;
-  }
+
+   }
+
 }
 
 .menu-search {
   margin-top: 10px;
-  background-color: #eff1f3;
+  background-color:#eff1f3;
 }
-.search-items-page {
+.search-items-page{
   display: inline;
   border: none;
 }
-.formCustom {
-  width: 100%;
-  margin-top: 10px;
-}
-.ui-helper-hidden-accessible {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-.ui-autocomplete-input {
-  background: #fff url("./images/search_btn.gif") no-repeat 98% 50%;
-}
+.formCustom{width:100%;margin-top:10px}
+.ui-helper-hidden-accessible{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}
+.ui-autocomplete-input{background:#fff url('./images/search_btn.gif') no-repeat 98% 50%}
