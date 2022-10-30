@@ -28,7 +28,7 @@
 		& img,
 		& .img {
 			width: 100%;
-			max-height: rem(200px);
+			height: rem(200px);
 			object-fit: cover;
 			border-radius: $border-radius $border-radius 0 0;
 		}

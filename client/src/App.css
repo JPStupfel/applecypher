@@ -252,6 +252,7 @@ td.column {
 
   .grid-cell{
     min-width: 175px;
+    max-width: none;
   }
 
   .map-box{
