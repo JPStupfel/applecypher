@@ -75,7 +75,7 @@ export default function AddPlaceContainer() {
             })
             .catch((e) => console.log(e));
         });
-      });
+      })
     // redirect to /placs
     .then(history(`/places`))
   }
