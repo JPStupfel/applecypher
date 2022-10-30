@@ -173,7 +173,7 @@ td.column {
   margin: 0;
 }
 .grid-cell {
-  max-width: 100px;
+ 
   /* Flex implementation */
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
