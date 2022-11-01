@@ -8,7 +8,7 @@ export default function SignupContainer({ setUser }) {
         <div className="login-header">
           <div className="brand">
             <div className="d-flex align-items-center">
-              READY<b>Set</b>BID
+            Apple<b>Cypher</b>
             </div>
             <small>Log in or Sign up to Access Features</small>
           </div>
