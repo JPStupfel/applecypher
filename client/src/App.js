@@ -8,7 +8,9 @@ import LoginContainer from "./components/LoginContainer";
 import AddPlaceContainer from "./components/AddPlaceContainer";
 import MyPlacesPage from "./components/MyPlacesPage";
 import ViewMyPlacePage from "./components/ViewMyPlacePage";
+import WebMap from "./components/arcmap/WebMap.js"
 import { connect, useSelector, useDispatch } from "react-redux";
+
 import "./components/scss/react.scss";
 
 function App() {
@@ -37,48 +39,49 @@ function App() {
   }
 
   return (
-    <Router>
-      <div>
-        <NavBar handleLogout={handleLogout} />
-        {/* routes if not logged in */}
-        {!user.user_type ? (
-          <Routes>
-            <Route
-              path="/signup"
-              exact
-              element={<SignupContainer setUser={setUser} />}></Route>
-            <Route
-              path="/login"
-              exact
-              element={<LoginContainer setUser={setUser} />}></Route>
-          </Routes>
-        ) : null}
-        <Routes>
-          <Route path="/" exact element={<MyPlacesPage />}></Route>
-          <Route path="/places" exact element={<MyPlacesPage />}></Route>
-          <Route
-            path="/places/:id"
-            exact
-            element={
-              user.user_type === "Client" ? (
-                <ViewMyPlacePage />
-              ) : (
-                <LoginContainer setUser={setUser} />
-              )
-            }></Route>
-          <Route
-            path="/new-place"
-            exact
-            element={
-              user.user_type === "Client" ? (
-                <AddPlaceContainer />
-              ) : (
-                <LoginContainer setUser={setUser} />
-              )
-            }></Route>
-        </Routes>
-      </div>
-    </Router>
+    // <Router>
+    //   <div>
+    //     <NavBar handleLogout={handleLogout} />
+    //     {/* routes if not logged in */}
+    //     {!user.user_type ? (
+    //       <Routes>
+    //         <Route
+    //           path="/signup"
+    //           exact
+    //           element={<SignupContainer setUser={setUser} />}></Route>
+    //         <Route
+    //           path="/login"
+    //           exact
+    //           element={<LoginContainer setUser={setUser} />}></Route>
+    //       </Routes>
+    //     ) : null}
+    //     <Routes>
+    //       <Route path="/" exact element={<MyPlacesPage />}></Route>
+    //       <Route path="/places" exact element={<MyPlacesPage />}></Route>
+    //       <Route
+    //         path="/places/:id"
+    //         exact
+    //         element={
+    //           user.user_type === "Client" ? (
+    //             <ViewMyPlacePage />
+    //           ) : (
+    //             <LoginContainer setUser={setUser} />
+    //           )
+    //         }></Route>
+    //       <Route
+    //         path="/new-place"
+    //         exact
+    //         element={
+    //           user.user_type === "Client" ? (
+    //             <AddPlaceContainer />
+    //           ) : (
+    //             <LoginContainer setUser={setUser} />
+    //           )
+    //         }></Route>
+    //     </Routes>
+    //   </div>
+    // </Router>
+    <WebMap />
   );
 }
 
