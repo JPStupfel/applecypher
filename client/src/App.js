@@ -10,7 +10,6 @@ import MyPlacesPage from "./components/MyPlacesPage";
 import ViewMyPlacePage from "./components/ViewMyPlacePage";
 import WebMap from "./components/arcmap/WebMap.js"
 import { connect, useSelector, useDispatch } from "react-redux";
-
 import "./components/scss/react.scss";
 
 function App() {
