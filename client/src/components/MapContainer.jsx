@@ -3,8 +3,9 @@ import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import CustomMarker from "./CustomMarker";
 import { useState } from "react";
 import { useEffect } from "react";
+import GoogleMapView from "./GoogleMapView";
+import WebMap from "./arcmap/WebMap";
 
-const API_KEY = process.env.REACT_APP_API_KEY_GOOGLE_EARTH_JS;
 
 const MapContainer = ({ placeList }) => {
   const [thisHeight, setThisHeight] = useState(document.body.clientHeight);
@@ -31,32 +32,19 @@ const MapContainer = ({ placeList }) => {
         setThisWidth(document.body.clientWidth)
       );
   }, []);
-
-  const markers = placeList.map((place) => (
-    <CustomMarker key={place.id} place={place} />
-  ));
   const mapStyles =
     thisWidth > 415
       ? { height: thisHeight, width: "100%" }
       : { height: 300, width: "100%" };
 
-  const defaultCenter = {
-    lat: placeList.length ? placeList[0].lat : 0,
-    lng: placeList.length ? placeList[0].lng : 0,
-  };
+
 
   return (
-    <LoadScript googleMapsApiKey={API_KEY}>
-      <div className="map-box">
-        <GoogleMap
-          mapContainerStyle={mapStyles}
-          zoom={9}
-          center={defaultCenter}
-        >
-          {markers}
-        </GoogleMap>
-      </div>
-    </LoadScript>
+  <div>
+    {1==2 ? <GoogleMapView mapStyles={mapStyles} placeList={placeList} />
+    : <div style={mapStyles} className="map-box"><WebMap mapStyles={mapStyles} placeList={placeList}/></div>
+    }
+    </div>
   );
 };
 export default MapContainer;

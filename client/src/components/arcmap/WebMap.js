@@ -1,14 +1,15 @@
 import React, {useEffect, useRef} from 'react'
 import ArcGISMap from "@arcgis/core/Map";
+import Map from "@arcgis/core/Map";
+
 import MapView from "@arcgis/core/views/MapView";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import Graphic from "@arcgis/core/Graphic";
 
 
-export default function WebMap({placeList}) {
+export default function WebMap({placeList, mapStyles}) {
  
     const mapDiv = useRef(null);
-console.log(placeList)
     const defaultCenter = {
       lat: placeList.length ? placeList[0].lat : 0,
       lng: placeList.length ? placeList[0].lng : 0,
@@ -62,7 +63,7 @@ console.log(placeList)
      
       }
       
-    }, );
+    },  );
   
-    return <div style={{"height":"400px"}} className="mapDiv" ref={mapDiv}></div>;
+    return <div style={mapStyles} className="mapDiv" ref={mapDiv}></div>;
 }

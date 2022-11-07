@@ -74,7 +74,6 @@ export default function MyPlacesPage() {
           <tr>
             <td id="page_map_container" style={{ width: "60%", height: "90%" }}>
               <MapContainer placeList={placeList} />
-              <WebMap  placeList={placeList} />
             </td>
             <td id="tdSide" width="40%">
               <table>
