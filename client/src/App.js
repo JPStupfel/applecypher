@@ -15,7 +15,7 @@ import "./components/scss/react.scss";
 function App() {
   const user = useSelector((state) => state);
   const dispatch = useDispatch();
-  function setUser(newUser) {
+  function  setUser(newUser) {
     const action = { type: "SET_USER" };
     Object.keys(user).forEach((key) => (action[key] = newUser[key]));
     dispatch(action);
@@ -38,49 +38,50 @@ function App() {
   }
 
   return (
-    // <Router>
-    //   <div>
-    //     <NavBar handleLogout={handleLogout} />
-    //     {/* routes if not logged in */}
-    //     {!user.user_type ? (
-    //       <Routes>
-    //         <Route
-    //           path="/signup"
-    //           exact
-    //           element={<SignupContainer setUser={setUser} />}></Route>
-    //         <Route
-    //           path="/login"
-    //           exact
-    //           element={<LoginContainer setUser={setUser} />}></Route>
-    //       </Routes>
-    //     ) : null}
-    //     <Routes>
-    //       <Route path="/" exact element={<MyPlacesPage />}></Route>
-    //       <Route path="/places" exact element={<MyPlacesPage />}></Route>
-    //       <Route
-    //         path="/places/:id"
-    //         exact
-    //         element={
-    //           user.user_type === "Client" ? (
-    //             <ViewMyPlacePage />
-    //           ) : (
-    //             <LoginContainer setUser={setUser} />
-    //           )
-    //         }></Route>
-    //       <Route
-    //         path="/new-place"
-    //         exact
-    //         element={
-    //           user.user_type === "Client" ? (
-    //             <AddPlaceContainer />
-    //           ) : (
-    //             <LoginContainer setUser={setUser} />
-    //           )
-    //         }></Route>
-    //     </Routes>
-    //   </div>
-    // </Router>
-    <WebMap />
+    <Router>
+      <div>
+        <NavBar handleLogout={handleLogout} />
+        {/* routes if not logged in */}
+        {!user.user_type ? (
+          <Routes>
+            <Route
+              path="/signup"
+              exact
+              element={<SignupContainer setUser={setUser} />}></Route>
+            <Route
+              path="/login"
+              exact
+              element={<LoginContainer setUser={setUser} />}></Route>
+          </Routes>
+        ) : null}
+        <Routes>
+          <Route path="/" exact element={<MyPlacesPage />}></Route>
+          <Route path="/places" exact element={<MyPlacesPage />}></Route>
+          <Route
+            path="/places/:id"
+            exact
+            element={
+              user.user_type === "Client" ? (
+                <ViewMyPlacePage />
+              ) : (
+                <LoginContainer setUser={setUser} />
+              )
+            }></Route>
+          <Route
+            path="/new-place"
+            exact
+            element={
+              user.user_type === "Client" ? (
+                <AddPlaceContainer />
+              ) : (
+                <LoginContainer setUser={setUser} />
+              )
+            }></Route>
+        </Routes>
+      </div>
+      
+    </Router>
+   
   );
 }
 

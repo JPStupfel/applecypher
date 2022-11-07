@@ -1,6 +1,7 @@
 import MapContainer from "./MapContainer";
 import PlaceClientCard from "./PlaceClientCard";
 import React, { useState, useEffect } from "react";
+import WebMap from "./arcmap/WebMap";
 
 export default function MyPlacesPage() {
   // for fetching places
@@ -73,6 +74,7 @@ export default function MyPlacesPage() {
           <tr>
             <td id="page_map_container" style={{ width: "60%", height: "90%" }}>
               <MapContainer placeList={placeList} />
+              <WebMap  placeList={placeList} />
             </td>
             <td id="tdSide" width="40%">
               <table>
