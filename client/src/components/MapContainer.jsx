@@ -6,10 +6,10 @@ import { useEffect } from "react";
 import GoogleMapView from "./GoogleMapView";
 import WebMap from "./arcmap/WebMap";
 
-
 const MapContainer = ({ placeList }) => {
   const [thisHeight, setThisHeight] = useState(document.body.clientHeight);
   const [thisWidth, setThisWidth] = useState(document.body.clientWidth);
+  const [isGoogleMap, setIsGoogleMap] = useState(false)
 
   useEffect(() => {
     setThisHeight(document.body.clientHeight);
@@ -32,18 +32,23 @@ const MapContainer = ({ placeList }) => {
         setThisWidth(document.body.clientWidth)
       );
   }, []);
+
   const mapStyles =
     thisWidth > 415
       ? { height: thisHeight, width: "100%" }
       : { height: 300, width: "100%" };
 
-
-
   return (
-  <div>
-    {1==2 ? <GoogleMapView mapStyles={mapStyles} placeList={placeList} />
-    : <div style={mapStyles} className="map-box"><WebMap mapStyles={mapStyles} placeList={placeList}/></div>
-    }
+    <div>
+      {isGoogleMap ? (
+        <GoogleMapView mapStyles={mapStyles} placeList={placeList} />
+      ) : (
+        <div style={mapStyles} className="map-box">
+          <WebMap mapStyles={mapStyles} placeList={placeList} />
+        </div>
+      )}
+            <button onClick={()=>setIsGoogleMap(prev=>!prev)}>{isGoogleMap ? 'View on ArcGIS Online' : "View on Google Maps"}</button>
+
     </div>
   );
 };
