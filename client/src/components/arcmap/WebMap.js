@@ -11,7 +11,7 @@ export default function WebMap({ placeList, mapStyles }) {
     lng: placeList.length ? placeList[0].lng : 0,
   };
 
-  function createPoint({ graphicsLayer, lng, lat, popupTitle, description }) {
+  function createPoint({ graphicsLayer, lng, lat, popupTitle, description, imageUrl }) {
     const point = {
       //Create a point
       type: "point",
@@ -19,11 +19,11 @@ export default function WebMap({ placeList, mapStyles }) {
       latitude: lat,
     };
 
-
     const popupTemplate = {
       title: popupTitle,
-      content: description
+      content: `<img src=${imageUrl}>${imageUrl}</img>`
    }
+   
    const attributes = {
       Name: "Graphic",
       Description: "I am a polygon"
@@ -66,7 +66,7 @@ export default function WebMap({ placeList, mapStyles }) {
       console.log(placeList[0])
 
       placeList.forEach((e) =>
-        createPoint({ graphicsLayer: graphicsLayer, lng: e.lng, lat: e.lat, popupTitle:e.title, description:e.description })
+        createPoint({ graphicsLayer: graphicsLayer, lng: e.lng, lat: e.lat, popupTitle:e.title, description:e.description, imageUrl: e.first_picture })
       );
     }
   });
