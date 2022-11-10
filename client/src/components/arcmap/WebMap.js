@@ -11,13 +11,23 @@ export default function WebMap({ placeList, mapStyles }) {
     lng: placeList.length ? placeList[0].lng : 0,
   };
 
-  function createPoint({ graphicsLayer, lng, lat }) {
+  function createPoint({ graphicsLayer, lng, lat, popupTitle, description }) {
     const point = {
       //Create a point
       type: "point",
       longitude: lng,
       latitude: lat,
     };
+
+
+    const popupTemplate = {
+      title: popupTitle,
+      content: description
+   }
+   const attributes = {
+      Name: "Graphic",
+      Description: "I am a polygon"
+   }
 
     const simpleMarkerSymbol = {
       type: "simple-marker",
@@ -31,9 +41,12 @@ export default function WebMap({ placeList, mapStyles }) {
     const pointGraphic = new Graphic({
       geometry: point,
       symbol: simpleMarkerSymbol,
+      attributes: attributes,
+    popupTemplate: popupTemplate
     });
     graphicsLayer.add(pointGraphic);
   }
+
 
   useEffect(() => {
     if (mapDiv.current) {
@@ -49,11 +62,11 @@ export default function WebMap({ placeList, mapStyles }) {
       });
 
       const graphicsLayer = new GraphicsLayer();
-
       map.add(graphicsLayer);
+      console.log(placeList[0])
 
       placeList.forEach((e) =>
-        createPoint({ graphicsLayer: graphicsLayer, lng: e.lng, lat: e.lat })
+        createPoint({ graphicsLayer: graphicsLayer, lng: e.lng, lat: e.lat, popupTitle:e.title, description:e.description })
       );
     }
   });
