@@ -4,7 +4,7 @@ import CustomMarker from "./CustomMarker";
 import { useState } from "react";
 import { useEffect } from "react";
 import GoogleMapView from "./GoogleMapView";
-import WebMap from "./arcmap/WebMap";
+import MyWebMap from "./arcmap/MyWebMap";
 
 const MapContainer = ({ placeList }) => {
   const [thisHeight, setThisHeight] = useState(document.body.clientHeight);
@@ -44,7 +44,7 @@ const MapContainer = ({ placeList }) => {
         <GoogleMapView mapStyles={mapStyles} placeList={placeList} />
       ) : (
         <div style={mapStyles} className="map-box">
-          <WebMap mapStyles={mapStyles} placeList={placeList} />
+          <MyWebMap mapStyles={mapStyles} placeList={placeList} />
         </div>
       )}
             <button onClick={()=>setIsGoogleMap(prev=>!prev)}>{isGoogleMap ? 'View on ArcGIS Online' : "View on Google Maps"}</button>

@@ -3,8 +3,10 @@ import ArcGISMap from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import Graphic from "@arcgis/core/Graphic";
+import WebMap from "@arcgis/core/WebMap";
+import esriConfig from "@arcgis/core/config";
 
-export default function WebMap({ placeList, mapStyles }) {
+export default function MyWebMap({ placeList, mapStyles }) {
   const mapDiv = useRef(null);
   const defaultCenter = {
     lat: placeList.length ? placeList[0].lat : 0,
@@ -21,12 +23,12 @@ export default function WebMap({ placeList, mapStyles }) {
 
     const popupTemplate = {
       title: popupTitle,
-      content: `<img src=${imageUrl}>${imageUrl}</img>`
+      content: `<img src=${imageUrl}></img>`
    }
    
    const attributes = {
       Name: "Graphic",
-      Description: "I am a polygon"
+      Description: description
    }
 
     const simpleMarkerSymbol = {
@@ -50,10 +52,16 @@ export default function WebMap({ placeList, mapStyles }) {
 
   useEffect(() => {
     if (mapDiv.current) {
-      const map = new ArcGISMap({
-        basemap: "gray-vector",
+
+      esriConfig.portalUrl = "https://jpstupfel.maps.arcgis.com";
+
+      const map = new WebMap({
+        portalItem: { // autocasts as new PortalItem()
+          id: "480baf2adf9947ed9a32d2873b0421be"
+        }
       });
 
+      
       const view = new MapView({
         map,
         container: mapDiv.current,

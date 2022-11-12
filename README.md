@@ -186,61 +186,6 @@ troubleshoot:
   account. Check [this video](https://www.youtube.com/watch?v=bQC5izDzOgE) for
   one possible fix.
 
-  ## Database Structure
-
-The Active Record Model here is linked to an SQL database with five distinct tables.
-
-These tables have a Database structure that looks like this:
-
-![alt text](./Readme-Photos/DataBaseSchema.png)
-The above diagram was created using [dbdiagram.io][dbdiagram.io]
-
-## Component Hierarchy
-
-Below is a map of the component hierarchy of all React Components used in this project.
-
-```
-Index
-|---------	App
-	|---------NavBar
-	|---------SignupContainer
-		|---------SignupClientForm
-		|---------SignupProForm
-	|---------LoginContainer
-		|---------LoginClientForm
-		|---------LoginProForm
-	|---------AddProjectContainer
-		|---------AddProjectMap
-		|---------fileForm
-		|---------AddProjectForm
-	|---------ProjectsProPage
-		|---------MapContainer
-			|---------CustomMarker
-		|---------ProjectProfessionalCard
-	|---------MyProjectsPage
-		|---------MapContainer
-			|---------CustomMarker
-		|---------ProjectClientCard
-	|---------ViewMyProjectPage
-		|---------MapContainer
-			|---------CustomMarker
-		|---------ViewProjectImageCard
-		|---------MyProjectBidList
-			|---------MyProjectBidItem
-	|---------MyWonProjectsPage
-		|---------MyWonProjectCard
-	|---------ViewWonProjectPage
-
-
-
-```
-
-# References
-
-To create the database diagrams in this readme I used: https://dbdiagram.io/d (for diagraming tables)
-
-I used Bootstrap available at https://getbootstrap.com/ for stylizing.
-
 ## This application makes use of three external API's, each requiring unique API keys that will have to be replaced within the code as follows:
 
 Note, for numbers 1 & 2 you will need a paid google maps api subscription. To do so, follow the prompts on this page: https://developers.google.com/maps/documentation/javascript/get-api-key
@@ -268,3 +213,5 @@ Part two: https://dev.to/jpstupfel/build-google-maps-search-component-in-react-p
 # helpful command
 
 scp -r /Users/jpstupfel/Development/post-bootcamp/applecyppher/client/build deploy@137.184.138.163:/home/deploy/applecypher/client/
+
+scp -r deploy@137.184.138.163:/tmp/passenger-error-JVAJ0S.html /Users/jpstupfel/Development/post-bootcamp/

@@ -8,7 +8,7 @@ import LoginContainer from "./components/LoginContainer";
 import AddPlaceContainer from "./components/AddPlaceContainer";
 import MyPlacesPage from "./components/MyPlacesPage";
 import ViewMyPlacePage from "./components/ViewMyPlacePage";
-import WebMap from "./components/arcmap/WebMap.js"
+import MyWebMap from "./components/arcmap/MyWebMap.js"
 import { connect, useSelector, useDispatch } from "react-redux";
 import "./components/scss/react.scss";
 

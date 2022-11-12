@@ -6,7 +6,6 @@ import { useEffect } from "react";
 
 export default function GoogleMapView({placeList, mapStyles}) {
     const API_KEY = process.env.REACT_APP_API_KEY_GOOGLE_EARTH_JS;
-
     const defaultCenter = {
         lat: placeList.length ? placeList[0].lat : 0,
         lng: placeList.length ? placeList[0].lng : 0,
