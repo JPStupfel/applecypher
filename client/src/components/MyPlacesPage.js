@@ -1,7 +1,6 @@
 import MapContainer from "./MapContainer";
 import PlaceClientCard from "./PlaceClientCard";
 import React, { useState, useEffect } from "react";
-import MyWebMap from "./arcmap/MyWebMap";
 
 export default function MyPlacesPage() {
   // for fetching places
