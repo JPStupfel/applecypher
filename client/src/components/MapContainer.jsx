@@ -1,6 +1,4 @@
 import React from "react";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
-import CustomMarker from "./CustomMarker";
 import { useState } from "react";
 import { useEffect } from "react";
 import GoogleMapView from "./GoogleMapView";
