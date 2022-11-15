@@ -8,13 +8,14 @@ import LoginContainer from "./components/LoginContainer";
 import AddPlaceContainer from "./components/AddPlaceContainer";
 import MyPlacesPage from "./components/MyPlacesPage";
 import ViewMyPlacePage from "./components/ViewMyPlacePage";
+import MyWebMap from "./components/arcmap/MyWebMap.js"
 import { connect, useSelector, useDispatch } from "react-redux";
 import "./components/scss/react.scss";
 
 function App() {
   const user = useSelector((state) => state);
   const dispatch = useDispatch();
-  function setUser(newUser) {
+  function  setUser(newUser) {
     const action = { type: "SET_USER" };
     Object.keys(user).forEach((key) => (action[key] = newUser[key]));
     dispatch(action);
@@ -78,7 +79,9 @@ function App() {
             }></Route>
         </Routes>
       </div>
+      
     </Router>
+   
   );
 }
 

@@ -4,16 +4,13 @@
   "engines": {
     "node": "16.x"
   },
-
   "scripts": {
     "start": "npm run watch:css && react-scripts start",
     "build": "npm run watch:css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
-  }
-  
-  ,
+  },
   "dependencies": {
     "redux": "^4.2.0"
   }

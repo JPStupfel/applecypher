@@ -2,19 +2,13 @@
 
 ## Description
 
-Ready-Set-Bid is a bidding wars web application. Let's say you are a homeowner with a huge brush pile in your back yard that you need to have cleaned up. The only problem is, you have no idea how to find someone you can trust to come do the work for a fair price. Enter Ready-Set-Bid. Ready-Set-Bid allows 'Professionals' the opportunity to bid on your project. As a client you simply create an account, upload a few pictures and watch the bids roll in. Once you see a bid that you feel is at a fair price, you click 'accept bid'. That's it.
+Apple Cypher is an app for families to find fun things do around the Dallas Fort Worth Metroplex.
 
-Likewise for professionals, you can:
+As a User, you can:
 
 1. Create an account.
-2. View all the projects which are available for bidding and their location on a map.
-3. Make a bid for any number of projects you like.
-
-Once you have won a bid, that bid is updated to include you as the winner and bidding will be closed.
-
-## A video walkthrough for this site can be found at:
-
-[ video walkthrough](https://youtu.be/fKyRj44sN08)
+2. View all the places which have been saved by other users and their location on a map.
+3. Save a new place that can be seen by other users.
 
 ## Requirements
 
@@ -192,61 +186,6 @@ troubleshoot:
   account. Check [this video](https://www.youtube.com/watch?v=bQC5izDzOgE) for
   one possible fix.
 
-  ## Database Structure
-
-The Active Record Model here is linked to an SQL database with five distinct tables.
-
-These tables have a Database structure that looks like this:
-
-![alt text](./Readme-Photos/DataBaseSchema.png)
-The above diagram was created using [dbdiagram.io][dbdiagram.io]
-
-## Component Hierarchy
-
-Below is a map of the component hierarchy of all React Components used in this project.
-
-```
-Index
-|---------	App
-	|---------NavBar
-	|---------SignupContainer
-		|---------SignupClientForm
-		|---------SignupProForm
-	|---------LoginContainer
-		|---------LoginClientForm
-		|---------LoginProForm
-	|---------AddProjectContainer
-		|---------AddProjectMap
-		|---------fileForm
-		|---------AddProjectForm
-	|---------ProjectsProPage
-		|---------MapContainer
-			|---------CustomMarker
-		|---------ProjectProfessionalCard
-	|---------MyProjectsPage
-		|---------MapContainer
-			|---------CustomMarker
-		|---------ProjectClientCard
-	|---------ViewMyProjectPage
-		|---------MapContainer
-			|---------CustomMarker
-		|---------ViewProjectImageCard
-		|---------MyProjectBidList
-			|---------MyProjectBidItem
-	|---------MyWonProjectsPage
-		|---------MyWonProjectCard
-	|---------ViewWonProjectPage
-
-
-
-```
-
-# References
-
-To create the database diagrams in this readme I used: https://dbdiagram.io/d (for diagraming tables)
-
-I used Bootstrap available at https://getbootstrap.com/ for stylizing.
-
 ## This application makes use of three external API's, each requiring unique API keys that will have to be replaced within the code as follows:
 
 Note, for numbers 1 & 2 you will need a paid google maps api subscription. To do so, follow the prompts on this page: https://developers.google.com/maps/documentation/javascript/get-api-key
@@ -262,3 +201,17 @@ If you would like to learn more about how to secure your API keys, I have writte
 Part one: https://dev.to/jpstupfel/build-google-maps-search-component-in-react-part-one-204m
 
 Part two: https://dev.to/jpstupfel/build-google-maps-search-component-in-react-part-two-57l8
+
+# Integrating with Arcgis
+
+1. Installed arcgis per https://odoe.net/blog/create-react-app
+
+2. uninstalled tailwind per https://stackoverflow.com/questions/72175358/how-to-uninstall-tailwind-from-my-react-application
+
+3. reinstalled npm i PostCss
+
+# helpful command
+
+scp -r /Users/jpstupfel/Development/post-bootcamp/applecyppher/client/build deploy@137.184.138.163:/home/deploy/applecypher/client/
+
+scp -r deploy@137.184.138.163:/tmp/passenger-error-JVAJ0S.html /Users/jpstupfel/Development/post-bootcamp/
