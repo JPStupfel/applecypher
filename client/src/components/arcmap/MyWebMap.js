@@ -76,7 +76,7 @@ export default function MyWebMap({ placeList, mapStyles }) {
             },
           ],
         },
-        clusterMinSize: "24px",
+        clusterMinSize: "49px",
         clusterMaxSize: "60px",
         labelingInfo: [
           {
@@ -90,7 +90,7 @@ export default function MyWebMap({ placeList, mapStyles }) {
               font: {
                 weight: "bold",
                 family: "Noto Sans",
-                size: "12px",
+                size: "20px",
               },
             },
             labelPlacement: "center-center",
@@ -111,11 +111,22 @@ export default function MyWebMap({ placeList, mapStyles }) {
           type: "simple",
           symbol: {
             type: "simple-marker",
-            size: 7,
+            size: 15,
             color: "#69dcff",
             outline: {
               color: "rgba(0, 139, 174, 0.5)",
               width: 5,
+
+
+    // const simpleMarkerSymbol = {
+    //   type: "simple-marker",
+    //   color: [226, 119, 40], // Orange
+    //   outline: {
+    //     color: [255, 255, 255], // White
+    //     width: 1,
+    //   },
+    // };
+
             },
           },
         },
