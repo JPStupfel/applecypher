@@ -66,30 +66,82 @@ export default function MyWebMap({ placeList, mapStyles }) {
       // create new geojson layer using the blob urlg23
       
 
+      const clusterConfig = {
+        type: "cluster",
+        clusterRadius: "100px",
+        // {cluster_count} is an aggregate field containing
+        // the number of features comprised by the cluster
+        popupTemplate: {
+          title: "Cluster summary",
+          content: "This cluster represents {cluster_count} earthquakes.",
+          fieldInfos: [
+            {
+              fieldName: "cluster_count",
+              format: {
+                places: 0,
+                digitSeparator: true
+              }
+            }
+          ]
+        },
+        clusterMinSize: "24px",
+        clusterMaxSize: "60px",
+        labelingInfo: [
+          {
+            deconflictionStrategy: "none",
+            labelExpressionInfo: {
+              expression: "Text($feature.cluster_count, '#,###')"
+            },
+            symbol: {
+              type: "text",
+              color: "#004a5d",
+              font: {
+                weight: "bold",
+                family: "Noto Sans",
+                size: "12px"
+              }
+            },
+            labelPlacement: "center-center"
+          }
+        ]
+      };
+
       const layer = new GeoJSONLayer({
         title: "Earthquakes from the last month",
         url: url,
         copyright: "USGS Earthquakes",
 
+        featureReduction: clusterConfig,
+
         // popupTemplates can still be viewed on
         // individual features
         popupTemplate: {
-          title: "fish",
+          title: "Magnitude {mag} {type}",
           content: "Magnitude {mag} {type} hit {place} on {time}",
+          fieldInfos: [
+            {
+              fieldName: "time",
+              format: {
+                dateFormat: "short-date-short-time"
+              }
+            }
+          ]
         },
         renderer: {
           type: "simple",
+          field: "mag",
           symbol: {
             type: "simple-marker",
             size: 4,
             color: "#69dcff",
             outline: {
               color: "rgba(0, 139, 174, 0.5)",
-              width: 5,
-            },
-          },
-        },
+              width: 5
+            }
+          }
+        }
       });
+
 
       map.add(layer); // adds the layer to the map
     }
