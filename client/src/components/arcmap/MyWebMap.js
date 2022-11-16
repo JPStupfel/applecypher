@@ -41,8 +41,8 @@ export default function MyWebMap({ placeList, mapStyles }) {
           type: "Feature",
           id: e.id,
           geometry: {
-            type: "MultiPoint",
-            coordinates: [[westLng, e.lat]],
+            type: "Point",
+            coordinates: [westLng, e.lat],
           },
           properties: {
             prop0: "value0",
