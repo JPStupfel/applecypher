@@ -1,5 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import GeoJSONLayer from "@arcgis/core/layers/GeoJSONLayer";
+import Multipoint from "@arcgis/core/geometry/Multipoint";
+import SpatialReference from "@arcgis/core/geometry/SpatialReference";
+
+
 import MapView from "@arcgis/core/views/MapView";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import Graphic from "@arcgis/core/Graphic";
@@ -56,6 +60,8 @@ export default function MyWebMap({ placeList, mapStyles }) {
 
       esriConfig.portalUrl = "https://jpstupfel.maps.arcgis.com";
 
+      // const map = new WebMap({ basemap: "hybrid"}
+      // );
       const map = new WebMap({
         portalItem: { // autocasts as new PortalItem()
           id: "480baf2adf9947ed9a32d2873b0421be"
@@ -70,20 +76,55 @@ export default function MyWebMap({ placeList, mapStyles }) {
         zoom: 7,
       });
 
-      const graphicsLayer = new GraphicsLayer();
-      map.add(graphicsLayer);
-      console.log(placeList[0])
+      // uncomment to restore graphics layer
+      // const graphicsLayer = new GraphicsLayer();
+      // map.add(graphicsLayer);
+      // placeList.forEach((e) =>
+      //   createPoint({ graphicsLayer: graphicsLayer, lng: e.lng, lat: e.lat, popupTitle:e.title, description:e.description, imageUrl: e.first_picture })
+      // );
+    //   var multiPoint = new Multipoint(new SpatialReference({ wkid:4326 }));
+    //  placeList.forEach((e) =>{
+    //   let westLat =  e.lat - 360
+    //   multiPoint.addPoint([ westLat ,e.lng])
+    //  });
 
-      placeList.forEach((e) =>
-        createPoint({ graphicsLayer: graphicsLayer, lng: e.lng, lat: e.lat, popupTitle:e.title, description:e.description, imageUrl: e.first_picture })
-      );
+      var pointArray = placeList.map((e) =>{
+        const westLng =  e.lng - 360
+        return([westLng, e.lat]) 
+     });
 
-      const geojsonlayer = new GeoJSONLayer({
-        url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
-        copyright: "USGS Earthquakes"
+      
+     const geojson = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            id: 1,
+            geometry: {
+              "type": "MultiPoint",
+              "coordinates": pointArray
+            },
+            properties: {
+              prop0: "value0",
+            }
+          }
+        ]
+      };
+    
+      // create a new blob from geojson featurecollection
+      const blob = new Blob([JSON.stringify(geojson)], {
+        type: "application/json"
       });
       
-      map.add(geojsonlayer);  // adds the layer to the map
+      // URL reference to the blob
+      const url = URL.createObjectURL(blob);
+      console.log(blob)
+      // create new geojson layer using the blob url
+      const layer = new GeoJSONLayer({
+        url
+      });
+
+      map.add(layer);  // adds the layer to the map
     }
   });
 
