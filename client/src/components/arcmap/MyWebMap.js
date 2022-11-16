@@ -34,7 +34,7 @@ export default function MyWebMap({ placeList, mapStyles }) {
         center: [defaultCenter.lng, defaultCenter.lat],
         zoom: 7,
       });
-
+console.log(placeList[0])
       const pointFeature = placeList.map((e) => {
         const westLng = e.lng - 360;
         return {
@@ -46,7 +46,8 @@ export default function MyWebMap({ placeList, mapStyles }) {
           },
           properties: {
             prop0: "value0",
-            title: e.title
+            title: e.title,
+            imageUrl: e.first_picture
           },
         };
       });
@@ -117,7 +118,7 @@ export default function MyWebMap({ placeList, mapStyles }) {
         // individual features
         popupTemplate: {
           title: "{title}",
-          content: "view this place",
+          content: "<img src={imageUrl}><img/>",
         },
         renderer: {
           type: "simple",
