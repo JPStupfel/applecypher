@@ -46,6 +46,7 @@ export default function MyWebMap({ placeList, mapStyles }) {
           },
           properties: {
             prop0: "value0",
+            title: e.title
           },
         };
       });
@@ -109,30 +110,20 @@ export default function MyWebMap({ placeList, mapStyles }) {
       const layer = new GeoJSONLayer({
         title: "Earthquakes from the last month",
         url: url,
-        copyright: "USGS Earthquakes",
 
         featureReduction: clusterConfig,
 
         // popupTemplates can still be viewed on
         // individual features
         popupTemplate: {
-          title: "Magnitude {mag} {type}",
-          content: "Magnitude {mag} {type} hit {place} on {time}",
-          fieldInfos: [
-            {
-              fieldName: "time",
-              format: {
-                dateFormat: "short-date-short-time"
-              }
-            }
-          ]
+          title: "{title}",
+          content: "view this place",
         },
         renderer: {
           type: "simple",
-          field: "mag",
           symbol: {
             type: "simple-marker",
-            size: 4,
+            size: 7,
             color: "#69dcff",
             outline: {
               color: "rgba(0, 139, 174, 0.5)",
