@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import ArcGISMap from "@arcgis/core/Map";
+import GeoJSONLayer from "@arcgis/core/layers/GeoJSONLayer";
 import MapView from "@arcgis/core/views/MapView";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import Graphic from "@arcgis/core/Graphic";
 import WebMap from "@arcgis/core/WebMap";
 import esriConfig from "@arcgis/core/config";
+
 
 export default function MyWebMap({ placeList, mapStyles }) {
   const mapDiv = useRef(null);
@@ -76,6 +77,13 @@ export default function MyWebMap({ placeList, mapStyles }) {
       placeList.forEach((e) =>
         createPoint({ graphicsLayer: graphicsLayer, lng: e.lng, lat: e.lat, popupTitle:e.title, description:e.description, imageUrl: e.first_picture })
       );
+
+      const geojsonlayer = new GeoJSONLayer({
+        url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
+        copyright: "USGS Earthquakes"
+      });
+      
+      map.add(geojsonlayer);  // adds the layer to the map
     }
   });
 
