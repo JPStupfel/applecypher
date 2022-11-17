@@ -56,7 +56,9 @@ export default function MyWebMap({ placeList, mapStyles }) {
       });
       // URL reference to the blob
       const url = URL.createObjectURL(blob);
-      console.log(pointFeature);
+      console.log('url=',url);
+      console.log('blob=',blob);
+
       // create new geojson layer using the blob urlg23
       const clusterConfig = {
         type: "cluster",
@@ -117,22 +119,20 @@ export default function MyWebMap({ placeList, mapStyles }) {
               color: "rgba(0, 139, 174, 0.5)",
               width: 5,
 
-
-    // const simpleMarkerSymbol = {
-    //   type: "simple-marker",
-    //   color: [226, 119, 40], // Orange
-    //   outline: {
-    //     color: [255, 255, 255], // White
-    //     width: 1,
-    //   },
-    // };
-
+              // const simpleMarkerSymbol = {
+              //   type: "simple-marker",
+              //   color: [226, 119, 40], // Orange
+              //   outline: {
+              //     color: [255, 255, 255], // White
+              //     width: 1,
+              //   },
+              // };
             },
           },
         },
       });
       // adds the layer to the map
-      map.add(layer); 
+      map.add(layer);
     }
   });
 

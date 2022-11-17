@@ -1,5 +1,5 @@
+import React, { useEffect, useRef } from "react";
 import Card from "react-bootstrap/Card";
-
 function VewMyPlaceImageCard({ image }) {
   return (
     <li className="grid-cell" datatype="region">
