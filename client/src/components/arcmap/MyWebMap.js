@@ -55,7 +55,7 @@ export default function MyWebMap({ placeList, mapStyles }) {
         type: "application/json",
       });
       // URL reference to the blob
-      const url = URL.createObjectURL(blob);
+      const url = window.URL.createObjectURL(blob);
       console.log('url=',url);
       console.log('blob=',blob);
 
