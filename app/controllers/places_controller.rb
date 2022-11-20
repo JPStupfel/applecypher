@@ -7,14 +7,12 @@ class PlacesController < ApplicationController
     def index
         if params[:limit] || params[:offset] || params[:search] 
             places = Place.limit(params[:limit]).offset(params[:offset]).where("title ILIKE ?","%"+params[:search]+"%")
-        
-    else 
-        places = Place.all
+        else 
+            places = Place.all
+        end
+            render json: places, status: 200
     end
-        render json: places, status: 200
 
-    end
- 
     def getAddress
        location = getCoords(params['loc'])
        render json: location, status: 200
@@ -31,7 +29,6 @@ class PlacesController < ApplicationController
 
     def show
         place = Place.find_by id: params['id']
-        
         if place
             render json: place, 
             serializer: PlacePicturesSerializer, 

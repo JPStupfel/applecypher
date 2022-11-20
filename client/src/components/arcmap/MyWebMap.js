@@ -48,9 +48,6 @@ export default function MyWebMap({ placeList, mapStyles }) {
   });
   // URL reference to the blob
   const url = window.URL.createObjectURL(blob);
-  console.log("url=", url);
-  console.log("blob=", blob);
-
   // create new geojson layer using the blob urlg23
   const clusterConfig = {
     type: "cluster",
@@ -117,13 +114,21 @@ export default function MyWebMap({ placeList, mapStyles }) {
   map.add(layer);
   // useEffect to initiate map anytime placelist changes
   useEffect(() => {
+  //   const spRf = new SpatialReference({
+  //     wkid: 4326
+  //   });
     // create the view (ie initial render of map)
     const view = new MapView({
-      map,
+      map: map,
       container: mapDiv.current,
       center: [defaultCenter.lng, defaultCenter.lat],
       zoom: 7,
     });
+    view.watch("stationary", function(val) {
+      if (val) {
+         console.log(view.center.latitude, view.center.longitude, view.extent, map.spatialReference);
+      }
+      });
   });
   return <div style={mapStyles} className="mapDiv" ref={mapDiv}></div>;
 }
