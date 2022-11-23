@@ -243,9 +243,14 @@ td.column {
 }
 #page_map_container, #tdSide {
   vertical-align: top;
+  
 }
 #page_map_container .map {
   width: 100%;
+}
+
+#roadtripRegions {
+  justify-content: center;
 }
 
 @media (max-width: 450px) {
@@ -271,7 +276,6 @@ td.column {
 
    #roadtripRegionsContainer {
     margin-left: 2%;
-
    }
 
 }
