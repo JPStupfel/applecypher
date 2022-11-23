@@ -71,10 +71,10 @@ export default function MyPlacesPage() {
       <table>
         <tbody>
           <tr>
-            <td id="page_map_container" style={{ width: "60%", height: "90%" }}>
+            <td id="page_map_container">
               <MapContainer placeList={placeList} />
             </td>
-            <td id="tdSide" width="40%">
+            <td id="tdSide" >
               <table>
                 <tbody>
                   <tr>

@@ -241,17 +241,28 @@ td.column {
 .listmore4 li:nth-child(n + 5) {
   display: none;
 }
+#tdSide{
+  width: 40%;
+}
 #page_map_container, #tdSide {
   vertical-align: top;
-  
 }
 #page_map_container .map {
-  width: 100%;
+  width: 60%;
+  height: 90%;
 }
 
 #roadtripRegions {
   justify-content: center;
 }
+
+
+
+
+
+
+
+
 
 @media (max-width: 450px) {
 
