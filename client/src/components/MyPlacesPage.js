@@ -117,6 +117,7 @@ export default function MyPlacesPage() {
                           <ul
                             id="roadtripRegions"
                             className=" grid-row grid-row--gutter grid-row--col-2 grid-row--card-min-200"
+                            style={{justifyContent:'center'}}
                           >
                             {placeList.length
                               ? PlaceCards
