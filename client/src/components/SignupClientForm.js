@@ -8,8 +8,18 @@ export default function SignupClientForm({ setUser }) {
     password_confirmation: null,
     image_url: null,
   });
+  const [postError, setPostError] = useState([])
   const history = useNavigate();
-
+  async function checkForErrors(response) {
+    if (!response.ok) {
+     let error = await response.json();
+     setPostError(error.errors)
+     throw Error(error.errors)
+    }
+    else{
+      return response.json()
+    }
+  }
   function handleSubmit(event) {
     event.preventDefault();
     fetch("/session", {
@@ -19,12 +29,16 @@ export default function SignupClientForm({ setUser }) {
       },
       body: JSON.stringify(formData),
     })
-      .then((r) => r.json())
+      .then(checkForErrors)
       .then((d) => {
         setUser(d);
+        setPostError([])
         history("/places");
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e)
+      })
+      ;
   }
 
   function handleChange(event) {
