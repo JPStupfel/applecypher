@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
             serializer: ClientSessionSerializer, 
             status: 200
         else
-            render json: {errors: client.errors.full_messages}
+            render json: {errors: client.errors.full_messages}, status: 406
         end
     end
     #used to check if logged in

@@ -8,16 +8,15 @@ export default function SignupClientForm({ setUser }) {
     password_confirmation: null,
     image_url: null,
   });
-  const [postError, setPostError] = useState([])
+  const [postError, setPostError] = useState([]);
   const history = useNavigate();
   async function checkForErrors(response) {
     if (!response.ok) {
-     let error = await response.json();
-     setPostError(error.errors)
-     throw Error(error.errors)
-    }
-    else{
-      return response.json()
+      let error = await response.json();
+      setPostError(error.errors);
+      throw Error(error.errors);
+    } else {
+      return response.json();
     }
   }
   function handleSubmit(event) {
@@ -32,13 +31,12 @@ export default function SignupClientForm({ setUser }) {
       .then(checkForErrors)
       .then((d) => {
         setUser(d);
-        setPostError([])
+        setPostError([]);
         history("/places");
       })
       .catch((e) => {
-        console.log(e)
-      })
-      ;
+        console.log(e);
+      });
   }
 
   function handleChange(event) {
@@ -145,6 +143,12 @@ export default function SignupClientForm({ setUser }) {
             >
               Sign me up
             </button>
+            <br/>
+              <label className="form-check-label text-danger">
+                {postError.map((e) => (
+                  <div>{e}</div>
+                ))}
+              </label>
           </div>
         </form>
       </div>
