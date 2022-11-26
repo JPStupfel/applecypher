@@ -2,7 +2,7 @@ import MapContainer from "./MapContainer";
 import PlaceClientCard from "./PlaceClientCard";
 import React, { useState, useEffect } from "react";
 
-export default function MyPlacesPage() {
+export default function MyPlacesPage({mapDiv}) {
   // for fetching places
   const [offset, setOffset] = useState(0);
   const [placeList, setPlaceList] = useState([]);
@@ -72,7 +72,7 @@ export default function MyPlacesPage() {
         <tbody>
           <tr>
             <td id="page_map_container" style={{ width: "60%", height: "90%" }}>
-              <MapContainer placeList={placeList} />
+              <MapContainer mapDiv={mapDiv} placeList={placeList} />
             </td>
             <td id="tdSide" width="40%">
               <table>

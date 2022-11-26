@@ -1,13 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import GeoJSONLayer from "@arcgis/core/layers/GeoJSONLayer";
 import MapView from "@arcgis/core/views/MapView";
 import WebMap from "@arcgis/core/WebMap";
 import esriConfig from "@arcgis/core/config";
 import * as webMercatorUtils from "@arcgis/core/geometry/support/webMercatorUtils";
+import { MapContext } from "@react-google-maps/api";
 
 
-export default function MyWebMap({ placeList, mapStyles }) {
-  const mapDiv = useRef(null);
+export default function MyWebMap({ mapDiv, placeList, mapStyles }) {
+  // const mapDiv = useRef(null);
   const defaultCenter = {
     lat: placeList.length ? placeList[0].lat : 0,
     lng: placeList.length ? placeList[0].lng : 0,
@@ -115,8 +116,8 @@ export default function MyWebMap({ placeList, mapStyles }) {
   });
   map.add(layer);
   // useEffect to initiate map anytime placelist changes
+  // create the view (ie initial render of map)
   useEffect(() => {
-    // create the view (ie initial render of map)
     const view = new MapView({
       map: map,
       container: mapDiv.current,
