@@ -4,8 +4,6 @@ import MapView from "@arcgis/core/views/MapView";
 import WebMap from "@arcgis/core/WebMap";
 import esriConfig from "@arcgis/core/config";
 import * as webMercatorUtils from "@arcgis/core/geometry/support/webMercatorUtils";
-import { MapContext } from "@react-google-maps/api";
-
 
 export default function MyWebMap({ mapDiv, placeList, mapStyles }) {
   // const mapDiv = useRef(null);
@@ -124,16 +122,21 @@ export default function MyWebMap({ mapDiv, placeList, mapStyles }) {
       center: [defaultCenter.lng, defaultCenter.lat],
       zoom: 7,
     });
-    view.watch("stationary", function(val) {
+    view.watch("stationary", function (val) {
       if (val) {
-        const maxXY = {max_x: view.extent.xmax, max_y: view.extent.ymax}
-        const maxLngLat = webMercatorUtils.xyToLngLat(maxXY.max_x, maxXY.max_y)
-        const minXY = {min_x: view.extent.xmin, min_y: view.extent.ymin}
-        const minLngLat = webMercatorUtils.xyToLngLat(minXY.min_x, minXY.min_y)
-        const extents = {minLat: minLngLat[1], minLng: minLngLat[0], maxLat: maxLngLat[1], maxLng: maxLngLat[0]}
-         console.log(extents);
+        const maxXY = { max_x: view.extent.xmax, max_y: view.extent.ymax };
+        const maxLngLat = webMercatorUtils.xyToLngLat(maxXY.max_x, maxXY.max_y);
+        const minXY = { min_x: view.extent.xmin, min_y: view.extent.ymin };
+        const minLngLat = webMercatorUtils.xyToLngLat(minXY.min_x, minXY.min_y);
+        const extents = {
+          minLat: minLngLat[1],
+          minLng: minLngLat[0],
+          maxLat: maxLngLat[1],
+          maxLng: maxLngLat[0],
+        };
+        console.log(extents);
       }
-      });
+    });
   });
   return <div style={mapStyles} className="mapDiv" ref={mapDiv}></div>;
 }

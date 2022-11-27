@@ -1,12 +1,16 @@
 import MapContainer from "./MapContainer";
 import PlaceClientCard from "./PlaceClientCard";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, createContext } from "react";
 
-export default function MyPlacesPage({mapDiv}) {
+const MapContext = createContext(null)
+
+export default function MyPlacesPage() {
   // for fetching places
   const [offset, setOffset] = useState(0);
   const [placeList, setPlaceList] = useState([]);
   const [search, setSearch] = useState("");
+  const mapDiv = useRef(null);
+
   useEffect(() => {
     fetchPlaces();
   }, [offset]);

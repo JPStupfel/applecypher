@@ -11,10 +11,7 @@ import ViewMyPlacePage from "./components/ViewMyPlacePage";
 import { connect, useSelector, useDispatch } from "react-redux";
 import "./components/scss/react.scss";
 
-const MapContext = createContext(null)
-
 function App() {
-  const mapDiv = useRef(null);
   const user = useSelector((state) => state);
   const dispatch = useDispatch();
   function  setUser(newUser) {
@@ -57,8 +54,8 @@ function App() {
           </Routes>
         ) : null}
         <Routes>
-          <Route path="/" exact element={<MyPlacesPage mapDiv={mapDiv} />}></Route>
-          <Route path="/places" exact element={<MyPlacesPage mapDiv={mapDiv} />}></Route>
+          <Route path="/" exact element={<MyPlacesPage  />}></Route>
+          <Route path="/places" exact element={<MyPlacesPage/>}></Route>
           <Route
             path="/places/:id"
             exact

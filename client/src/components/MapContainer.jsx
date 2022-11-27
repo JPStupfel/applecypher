@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import GoogleMapView from "./GoogleMapView";
 import MyWebMap from "./arcmap/MyWebMap";
 
+
 const MapContainer = ({ placeList, mapDiv }) => {
   const [thisHeight, setThisHeight] = useState(document.body.clientHeight);
   const [thisWidth, setThisWidth] = useState(document.body.clientWidth);

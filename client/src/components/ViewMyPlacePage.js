@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import MapContainer from "./MapContainer";
 import VewMyPlaceImageCard from "./VewMyPlaceImageCard";
 
 export default function ViewMyPlacePage() {
+  const mapDiv = useRef(null)
   let { id } = useParams();
   const id_num = parseInt(id, 10);
   const [isEditDesc, setIsEditDesc] = useState(false);
@@ -74,7 +75,7 @@ export default function ViewMyPlacePage() {
               <div className="col-sm-6">
                 <div className="card border-0 text-truncate mb-3 bg-gray-800 text-white">
                   <div className="card-body">
-                    <MapContainer placeList={[currentPlace]} />
+                    <MapContainer mapDiv={mapDiv} placeList={[currentPlace]} />
                   </div>
                 </div>
               </div>
