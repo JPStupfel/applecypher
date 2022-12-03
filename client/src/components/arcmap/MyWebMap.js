@@ -5,8 +5,8 @@ import WebMap from "@arcgis/core/WebMap";
 import esriConfig from "@arcgis/core/config";
 import * as webMercatorUtils from "@arcgis/core/geometry/support/webMercatorUtils";
 
-export default function MyWebMap({ mapDiv, placeList, mapStyles }) {
-  // const mapDiv = useRef(null);
+export default function MyWebMap({ placeList, mapStyles, setExtents }) {
+  const mapDiv = useRef(null);
   const defaultCenter = {
     lat: placeList.length ? placeList[0].lat : 0,
     lng: placeList.length ? placeList[0].lng : 0,
@@ -113,8 +113,6 @@ export default function MyWebMap({ mapDiv, placeList, mapStyles }) {
     },
   });
   map.add(layer);
-  // useEffect to initiate map anytime placelist changes
-  // create the view (ie initial render of map)
   useEffect(() => {
     const view = new MapView({
       map: map,
@@ -134,9 +132,10 @@ export default function MyWebMap({ mapDiv, placeList, mapStyles }) {
           maxLat: maxLngLat[1],
           maxLng: maxLngLat[0],
         };
-        console.log(extents);
+       setExtents(extents);
       }
     });
-  });
+    // useEffect to initiate map anytime placelist changes
+  },[placeList]);
   return <div style={mapStyles} className="mapDiv" ref={mapDiv}></div>;
 }

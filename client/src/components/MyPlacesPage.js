@@ -9,8 +9,7 @@ export default function MyPlacesPage() {
   const [offset, setOffset] = useState(0);
   const [placeList, setPlaceList] = useState([]);
   const [search, setSearch] = useState("");
-  const mapDiv = useRef(null);
-
+  const [extents, setExtents] = useState([])
   useEffect(() => {
     fetchPlaces();
   }, [offset]);
@@ -69,14 +68,14 @@ export default function MyPlacesPage() {
     event.preventDefault();
     setSearch(event.target.value);
   }
-
+console.log(extents)
   return (
     <div id="gallery" className="gallery row gx-0">
       <table>
         <tbody>
           <tr>
             <td id="page_map_container" style={{ width: "60%", height: "90%" }}>
-              <MapContainer mapDiv={mapDiv} placeList={placeList} />
+              <MapContainer setExtents={setExtents} placeList={placeList} />
             </td>
             <td id="tdSide" width="40%">
               <table>
