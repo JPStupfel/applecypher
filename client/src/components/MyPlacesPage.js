@@ -10,41 +10,23 @@ export default function MyPlacesPage() {
   const [placeList, setPlaceList] = useState([]);
   const [search, setSearch] = useState("");
   const [extents, setExtents] = useState([])
-  const placesToShow = placeList.slice(offset, offset + 6)
+  const searchedPlaces = search ? placeList.filter(e=>e.title.includes(search)) : placeList
+  const placesToShow = searchedPlaces.slice(offset, offset + 6)
   useEffect(() => {
     fetchPlaces();
-  }, [offset]);
-  useEffect(() => {
-    searchPlaces();
-  }, [search]);
+  }, []);
   function fetchPlaces() {
     fetch(`places?limit=${100}&search=${search}`)
       .then((r) => r.json())
       .then((d) => {
-        if (d.length) {
-          setPlaceList(d);
-        } else {
-          handleChangeOffset(-6);
-          console.log("You have reached the last page!");
-        }
+        setPlaceList(d);
       })
       .catch((e) => console.log(e));
   }
-  function searchPlaces() {
-    // fetch(`places?limit=${100}&offset=${offset}&search=${search}`)
-    //   .then((r) => r.json())
-    //   .then((d) => {
-    //     setPlaceList(d);
-    //   })
-    //   .catch((e) => console.log(e));
-    // setOffset(0);
-  }
   // function to change offset +/- int
   function handleChangeOffset(int) {
-    if (offset + int <= placeList.length) {
+    if (offset+int>=0 && offset + int <= searchedPlaces.length) {
       setOffset((prev) => setOffset(prev + int));
-    } else {
-      console.log("You have reached page 1!");
     }
   }
   // for resizing map and scroll bar
@@ -60,15 +42,17 @@ export default function MyPlacesPage() {
       );
   });
   const scrollStyle = { height: `${thisHeight}px` };
+  // for Search bar
+  function handleChange(event) {
+    event.preventDefault();
+    setOffset(0)
+    setSearch(event.target.value);
+    console.log(placeList)
+  }
   // create place cards
   const PlaceCards = placesToShow.map((e) => (
     <PlaceClientCard key={e.id} place={e} />
   ));
-  // for Search bar
-  function handleChange(event) {
-    event.preventDefault();
-    setSearch(event.target.value);
-  }
   console.log(placeList.length)
   return (
     <div id="gallery" className="gallery row gx-0">
