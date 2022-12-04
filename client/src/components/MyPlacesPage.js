@@ -2,16 +2,31 @@ import MapContainer from "./MapContainer";
 import PlaceClientCard from "./PlaceClientCard";
 import React, { useState, useEffect, useRef, createContext } from "react";
 
-const MapContext = createContext(null)
+const MapContext = createContext(null);
 
 export default function MyPlacesPage() {
   // for fetching places
   const [offset, setOffset] = useState(0);
   const [placeList, setPlaceList] = useState([]);
   const [search, setSearch] = useState("");
-  const [extents, setExtents] = useState([])
-  const searchedPlaces = search ? placeList.filter(e=>e.title.includes(search)) : placeList
-  const placesToShow = searchedPlaces.slice(offset, offset + 6)
+  const [extents, setExtents] = useState([]);
+  const searchedPlaces = search
+    ? placeList.filter((e) => e.title.includes(search))
+    : placeList;
+  const extentPlaces = extents.maxLat
+    ? searchedPlaces.filter(
+        (e) =>
+          e.lat < extents.maxLat &&
+          e.lat > extents.minLat &&
+          getWestLng(e.lng) < extents.maxLng &&
+          getWestLng(e.lng) > extents.minLng
+      )
+    : searchedPlaces;
+  const placesToShow = extentPlaces.slice(offset, offset + 6);
+  function getWestLng(lng) {
+    const westLng = lng < 0 ? lng : lng - 360;
+    return westLng
+  }
   useEffect(() => {
     fetchPlaces();
   }, []);
@@ -25,7 +40,7 @@ export default function MyPlacesPage() {
   }
   // function to change offset +/- int
   function handleChangeOffset(int) {
-    if (offset+int>=0 && offset + int <= searchedPlaces.length) {
+    if (offset + int >= 0 && offset + int <= searchedPlaces.length) {
       setOffset((prev) => setOffset(prev + int));
     }
   }
@@ -45,15 +60,14 @@ export default function MyPlacesPage() {
   // for Search bar
   function handleChange(event) {
     event.preventDefault();
-    setOffset(0)
+    setOffset(0);
     setSearch(event.target.value);
-    console.log(placeList)
   }
   // create place cards
   const PlaceCards = placesToShow.map((e) => (
     <PlaceClientCard key={e.id} place={e} />
   ));
-  console.log(placeList.length)
+  console.log(extents, placeList[0]);
   return (
     <div id="gallery" className="gallery row gx-0">
       <table>
@@ -119,7 +133,8 @@ export default function MyPlacesPage() {
                             </button>
                             <button className="btn btn-outline-inverse">
                               Showing items {offset + 1}...
-                              {offset + placesToShow.length} of {placeList.length}
+                              {offset + placesToShow.length} of{" "}
+                              {placeList.length}
                             </button>
                             <button
                               className="btn btn-outline-inverse"
