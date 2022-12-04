@@ -10,6 +10,7 @@ export default function MyPlacesPage() {
   const [placeList, setPlaceList] = useState([]);
   const [search, setSearch] = useState("");
   const [extents, setExtents] = useState([])
+  const placesToShow = placeList.slice(offset, offset + 6)
   useEffect(() => {
     fetchPlaces();
   }, [offset]);
@@ -17,7 +18,7 @@ export default function MyPlacesPage() {
     searchPlaces();
   }, [search]);
   function fetchPlaces() {
-    fetch(`places?limit=${6}&offset=${offset}&search=${search}`)
+    fetch(`places?limit=${100}&offset=${offset}&search=${search}`)
       .then((r) => r.json())
       .then((d) => {
         if (d.length) {
@@ -30,7 +31,7 @@ export default function MyPlacesPage() {
       .catch((e) => console.log(e));
   }
   function searchPlaces() {
-    fetch(`places?limit=${6}&offset=${offset}&search=${search}`)
+    fetch(`places?limit=${100}&offset=${offset}&search=${search}`)
       .then((r) => r.json())
       .then((d) => {
         setPlaceList(d);
@@ -60,7 +61,7 @@ export default function MyPlacesPage() {
   });
   const scrollStyle = { height: `${thisHeight}px` };
   // create place cards
-  const PlaceCards = placeList.map((e) => (
+  const PlaceCards = placesToShow.map((e) => (
     <PlaceClientCard key={e.id} place={e} />
   ));
   // for Search bar
@@ -68,7 +69,7 @@ export default function MyPlacesPage() {
     event.preventDefault();
     setSearch(event.target.value);
   }
-console.log(extents)
+console.log(placeList.length, placesToShow.length)
   return (
     <div id="gallery" className="gallery row gx-0">
       <table>
