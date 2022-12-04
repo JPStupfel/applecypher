@@ -18,7 +18,7 @@ export default function MyPlacesPage() {
     searchPlaces();
   }, [search]);
   function fetchPlaces() {
-    fetch(`places?limit=${100}&offset=${offset}&search=${search}`)
+    fetch(`places?limit=${100}&search=${search}`)
       .then((r) => r.json())
       .then((d) => {
         if (d.length) {
@@ -31,17 +31,17 @@ export default function MyPlacesPage() {
       .catch((e) => console.log(e));
   }
   function searchPlaces() {
-    fetch(`places?limit=${100}&offset=${offset}&search=${search}`)
-      .then((r) => r.json())
-      .then((d) => {
-        setPlaceList(d);
-      })
-      .catch((e) => console.log(e));
-    setOffset(0);
+    // fetch(`places?limit=${100}&offset=${offset}&search=${search}`)
+    //   .then((r) => r.json())
+    //   .then((d) => {
+    //     setPlaceList(d);
+    //   })
+    //   .catch((e) => console.log(e));
+    // setOffset(0);
   }
   // function to change offset +/- int
   function handleChangeOffset(int) {
-    if (offset + int >= 0) {
+    if (offset + int <= placeList.length) {
       setOffset((prev) => setOffset(prev + int));
     } else {
       console.log("You have reached page 1!");
@@ -69,7 +69,7 @@ export default function MyPlacesPage() {
     event.preventDefault();
     setSearch(event.target.value);
   }
-console.log(placeList.length, placesToShow.length)
+  console.log(placeList.length)
   return (
     <div id="gallery" className="gallery row gx-0">
       <table>
@@ -134,8 +134,8 @@ console.log(placeList.length, placesToShow.length)
                               Previous
                             </button>
                             <button className="btn btn-outline-inverse">
-                              Showing items {offset + 1} to{" "}
-                              {offset + placeList.length}
+                              Showing items {offset + 1}...
+                              {offset + placesToShow.length} of {placeList.length}
                             </button>
                             <button
                               className="btn btn-outline-inverse"
