@@ -2,8 +2,6 @@ import MapContainer from "./MapContainer";
 import PlaceClientCard from "./PlaceClientCard";
 import React, { useState, useEffect, useRef, createContext } from "react";
 
-const MapContext = createContext(null);
-
 export default function MyPlacesPage() {
   // for fetching places
   const [offset, setOffset] = useState(0);
@@ -22,7 +20,7 @@ export default function MyPlacesPage() {
           getWestLng(e.lng) > extents.minLng
       )
     : searchedPlaces;
-  const placesToShow = extentPlaces.slice(offset, offset + 6);
+  const placesToShow = extentPlaces ? extentPlaces.slice(offset, offset + 6) : searchedPlaces
   function getWestLng(lng) {
     const westLng = lng < 0 ? lng : lng - 360;
     return westLng
@@ -33,7 +31,7 @@ export default function MyPlacesPage() {
   function fetchPlaces() {
     fetch(`places?limit=${100}&search=${search}`)
       .then((r) => r.json())
-      .then((d) => {
+      .then((d) => { 
         setPlaceList(d);
       })
       .catch((e) => console.log(e));
@@ -67,7 +65,6 @@ export default function MyPlacesPage() {
   const PlaceCards = placesToShow.map((e) => (
     <PlaceClientCard key={e.id} place={e} />
   ));
-  console.log(extents, placeList[0]);
   return (
     <div id="gallery" className="gallery row gx-0">
       <table>
