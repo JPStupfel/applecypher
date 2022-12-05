@@ -1,46 +1,45 @@
 import MapContainer from "./MapContainer";
 import PlaceClientCard from "./PlaceClientCard";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, createContext } from "react";
 
 export default function MyPlacesPage() {
   // for fetching places
   const [offset, setOffset] = useState(0);
   const [placeList, setPlaceList] = useState([]);
   const [search, setSearch] = useState("");
+  const [extents, setExtents] = useState([]);
+  const searchedPlaces = search
+    ? placeList.filter((e) => e.title.includes(search))
+    : placeList;
+  const extentPlaces = extents.maxLat
+    ? searchedPlaces.filter(
+        (e) =>
+          e.lat < extents.maxLat &&
+          e.lat > extents.minLat &&
+          getWestLng(e.lng) < extents.maxLng &&
+          getWestLng(e.lng) > extents.minLng
+      )
+    : searchedPlaces;
+  const placesToShow = extentPlaces ? extentPlaces.slice(offset, offset + 6) : searchedPlaces
+  function getWestLng(lng) {
+    const westLng = lng < 0 ? lng : lng - 360;
+    return westLng
+  }
   useEffect(() => {
     fetchPlaces();
-  }, [offset]);
-  useEffect(() => {
-    searchPlaces();
-  }, [search]);
+  }, []);
   function fetchPlaces() {
-    fetch(`places?limit=${6}&offset=${offset}&search=${search}`)
+    fetch(`places?limit=${100}&search=${search}`)
       .then((r) => r.json())
-      .then((d) => {
-        if (d.length) {
-          setPlaceList(d);
-        } else {
-          handleChangeOffset(-6);
-          console.log("You have reached the last page!");
-        }
-      })
-      .catch((e) => console.log(e));
-  }
-  function searchPlaces() {
-    fetch(`places?limit=${6}&offset=${offset}&search=${search}`)
-      .then((r) => r.json())
-      .then((d) => {
+      .then((d) => { 
         setPlaceList(d);
       })
       .catch((e) => console.log(e));
-    setOffset(0);
   }
   // function to change offset +/- int
   function handleChangeOffset(int) {
-    if (offset + int >= 0) {
+    if (offset + int >= 0 && offset + int <= searchedPlaces.length) {
       setOffset((prev) => setOffset(prev + int));
-    } else {
-      console.log("You have reached page 1!");
     }
   }
   // for resizing map and scroll bar
@@ -56,23 +55,23 @@ export default function MyPlacesPage() {
       );
   });
   const scrollStyle = { height: `${thisHeight}px` };
-  // create place cards
-  const PlaceCards = placeList.map((e) => (
-    <PlaceClientCard key={e.id} place={e} />
-  ));
   // for Search bar
   function handleChange(event) {
     event.preventDefault();
+    setOffset(0);
     setSearch(event.target.value);
   }
-
+  // create place cards
+  const PlaceCards = placesToShow.map((e) => (
+    <PlaceClientCard key={e.id} place={e} />
+  ));
   return (
     <div id="gallery" className="gallery row gx-0">
       <table>
         <tbody>
           <tr>
-            <td id="page_map_container">
-              <MapContainer placeList={placeList} />
+            <td id="page_map_container" style={{ width: "60%", height: "90%" }}>
+              <MapContainer setExtents={setExtents} placeList={placeList} />
             </td>
             <td id="tdSide" >
               <table>
@@ -131,8 +130,9 @@ export default function MyPlacesPage() {
                               Previous
                             </button>
                             <button className="btn btn-outline-inverse">
-                              Showing items {offset + 1} to{" "}
-                              {offset + placeList.length}
+                              Showing items {offset + 1}...
+                              {offset + placesToShow.length} of{" "}
+                              {placeList.length}
                             </button>
                             <button
                               className="btn btn-outline-inverse"

@@ -143,12 +143,12 @@ export default function SignupClientForm({ setUser }) {
             >
               Sign me up
             </button>
-            <br/>
-              <label className="form-check-label text-danger">
-                {postError.map((e) => (
-                  <div>{e}</div>
-                ))}
-              </label>
+            <br />
+            <label className="form-check-label text-danger">
+              {postError.map((e) => (
+                <div>{e}</div>
+              ))}
+            </label>
           </div>
         </form>
       </div>

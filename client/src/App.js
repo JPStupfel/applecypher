@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
@@ -54,8 +54,8 @@ function App() {
           </Routes>
         ) : null}
         <Routes>
-          <Route path="/" exact element={<MyPlacesPage />}></Route>
-          <Route path="/places" exact element={<MyPlacesPage />}></Route>
+          <Route path="/" exact element={<MyPlacesPage  />}></Route>
+          <Route path="/places" exact element={<MyPlacesPage/>}></Route>
           <Route
             path="/places/:id"
             exact
@@ -78,9 +78,7 @@ function App() {
             }></Route>
         </Routes>
       </div>
-      
     </Router>
-   
   );
 }
 
