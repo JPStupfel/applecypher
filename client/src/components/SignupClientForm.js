@@ -1,58 +1,69 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function SignupClientForm({ setUser }) {
-  const [formData, setFormData] = useState({
-    username: null,
-    password: null,
-    password_confirmation: null,
-    image_url: null,
-  });
-  const [postError, setPostError] = useState([]);
-  const history = useNavigate();
-  async function checkForErrors(response) {
+// export default function SignupClientForm({ setUser }) {
+  export default class SignupClientForm extends React.Component {
+  
+  constructor(props){
+    super(props)
+    this.state = {}
+    this.state.formData = {
+      username: null,
+      password: null,
+      password_confirmation: null,
+      image_url: null,
+    }
+    this.state.postError = []
+
+  }
+  
+   checkForErrors = async (response)=> {
     if (!response.ok) {
       let error = await response.json();
-      setPostError(error.errors);
+      // setPostError(error.errors);
+      const newErrorState = {...this.state, postError: error.errors}
+      this.setState(newErrorState);
       throw Error(error.errors);
     } else {
       return response.json();
     }
   }
-  function handleSubmit(event) {
+  handleSubmit=(event)=> {
     event.preventDefault();
     fetch("/session", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(this.state.formData),
     })
-      .then(checkForErrors)
+      .then(this.checkForErrors)
       .then((d) => {
-        setUser(d);
-        setPostError([]);
-        history("/places");
+        this.props.setUser(d);
+        const newErrorState = {...this.state, postError: []}
+        this.setState(newErrorState);
+       this.props.history.push('/places')
       })
       .catch((e) => {
         console.log(e);
       });
   }
-
-  function handleChange(event) {
+  handleChange=(event)=> {
     const id = event.target.id;
     const input = event.target.value;
-    const newFormData = { ...formData };
-    newFormData[id] = input;
-    setFormData(newFormData);
+    const newFormData = { ...this.state};
+    newFormData.formData[id] = input;
+    this.setState(newFormData);
   }
+  render(){
+    const { navigation } = this.props
   return (
     <div className="login-body">
       <div className="login-content fs-13px">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <div className="form-floating mb-20px">
             <input
-              onChange={handleChange}
+              onChange={this.handleChange}
               type="text"
               className="form-control fs-13px h-45px"
               id="username"
@@ -67,7 +78,7 @@ export default function SignupClientForm({ setUser }) {
           </div>
           <div className="form-floating mb-20px">
             <input
-              onChange={handleChange}
+              onChange={this.handleChange}
               type="password"
               className="form-control fs-13px h-45px"
               id="password"
@@ -82,7 +93,7 @@ export default function SignupClientForm({ setUser }) {
           </div>
           <div className="form-floating mb-20px">
             <input
-              onChange={handleChange}
+              onChange={this.handleChange}
               type="password"
               className="form-control fs-13px h-45px"
               id="password_confirmation"
@@ -97,7 +108,7 @@ export default function SignupClientForm({ setUser }) {
           </div>
           <div className="form-floating mb-20px">
             <input
-              onChange={handleChange}
+              onChange={this.handleChange}
               type="text"
               className="form-control fs-13px h-45px"
               id="image_url"
@@ -112,7 +123,7 @@ export default function SignupClientForm({ setUser }) {
           </div>
           <div className="form-floating mb-20px">
             <input
-              onChange={handleChange}
+              onChange={this.handleChange}
               type="text"
               className="form-control fs-13px h-45px"
               id="email"
@@ -145,13 +156,13 @@ export default function SignupClientForm({ setUser }) {
             </button>
             <br />
             <label className="form-check-label text-danger">
-              {postError.map((e) => (
+              {this.state.postError.length ? this.postError.map((e) => (
                 <div>{e}</div>
-              ))}
+              )) : null}
             </label>
           </div>
         </form>
       </div>
     </div>
-  );
+  );}
 }
