@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 // export default function SignupClientForm({ setUser }) {
-export default class SignupClientForm extends React.Component {
+class SignupClientForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -13,6 +13,7 @@ export default class SignupClientForm extends React.Component {
       image_url: null,
     };
     this.state.postError = [];
+    this.state.navigate = null
   }
 
   checkForErrors = async (response) => {
@@ -26,28 +27,11 @@ export default class SignupClientForm extends React.Component {
       return response.json();
     }
   };
-  // handleThisSubmit = (event) => {
-  //   debugger;
-  //   fetch("/session", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(this.state.formData),
-  //   })
-  //     .then(this.checkForErrors)
-  //     .then((d) => {
-  //       this.props.setUser(d);
-  //       const newErrorState = {...this.state, postError: []}
-  //       this.setState(newErrorState);
-  //      this.props.history.push('/places')
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // };
   handleThisSubmit  = (event) => {
+    debugger
     event.preventDefault();
+    const newNav = {...this.state, navigate: true}
+    this.setState(newNav)
     fetch("/session", {
       method: "POST",
       headers: {
@@ -60,7 +44,7 @@ export default class SignupClientForm extends React.Component {
         this.props.setUser(d);
         const newErrorState = {...this.state, postError: []}
         this.setState(newErrorState);
-      //  this.props.history.push('/places')
+       this.props.history.push('/places')
       })
       .catch((e) => {
         console.log(e);
@@ -74,7 +58,12 @@ export default class SignupClientForm extends React.Component {
     this.setState(newFormData);
   };
   render() {
-    const { navigation } = this.props;
+    // if this.state.navigate is true, then rendering <Navigate will redirect
+    if (this.state.navigate){
+      return(
+        <Navigate to="/places" replace={true} />
+    )}
+
     return (
       <div className="login-body">
         <div className="login-content fs-13px">
@@ -185,3 +174,4 @@ export default class SignupClientForm extends React.Component {
     );
   }
 }
+export default SignupClientForm
